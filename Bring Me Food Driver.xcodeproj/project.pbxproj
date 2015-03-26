@@ -39,6 +39,8 @@
 		94B7D0331AC4A00600C313CB /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0291AC4A00600C313CB /* UICKeyChainStore.m */; };
 		94B7D0391AC4A21F00C313CB /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0371AC4A21F00C313CB /* LogInViewController.m */; };
 		94B7D03A1AC4A21F00C313CB /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7D0381AC4A21F00C313CB /* LogInViewController.xib */; };
+		94B7D03E1AC4AE2200C313CB /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D03C1AC4AE2200C313CB /* MainViewController.m */; };
+		94B7D03F1AC4AE2200C313CB /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7D03D1AC4AE2200C313CB /* MainViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,9 @@
 		94B7D0361AC4A21F00C313CB /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		94B7D0371AC4A21F00C313CB /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		94B7D0381AC4A21F00C313CB /* LogInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogInViewController.xib; sourceTree = "<group>"; };
+		94B7D03B1AC4AE2200C313CB /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		94B7D03C1AC4AE2200C313CB /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		94B7D03D1AC4AE2200C313CB /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +164,9 @@
 		94B7CFCE1AC49E8300C313CB /* Bring Me Food Driver */ = {
 			isa = PBXGroup;
 			children = (
+				94B7D03B1AC4AE2200C313CB /* MainViewController.h */,
+				94B7D03C1AC4AE2200C313CB /* MainViewController.m */,
+				94B7D03D1AC4AE2200C313CB /* MainViewController.xib */,
 				94B7D0361AC4A21F00C313CB /* LogInViewController.h */,
 				94B7D0371AC4A21F00C313CB /* LogInViewController.m */,
 				94B7D0381AC4A21F00C313CB /* LogInViewController.xib */,
@@ -366,6 +374,7 @@
 			files = (
 				94B7D03A1AC4A21F00C313CB /* LogInViewController.xib in Resources */,
 				94B7CFDB1AC49E8300C313CB /* Main.storyboard in Resources */,
+				94B7D03F1AC4AE2200C313CB /* MainViewController.xib in Resources */,
 				94B7CFE01AC49E8300C313CB /* LaunchScreen.xib in Resources */,
 				94B7CFDD1AC49E8300C313CB /* Images.xcassets in Resources */,
 			);
@@ -398,6 +407,7 @@
 				94B7D0321AC4A00600C313CB /* UIColor+FlatColors.m in Sources */,
 				94B7D0301AC4A00600C313CB /* PQFBouncingBalls.m in Sources */,
 				94B7CFD21AC49E8300C313CB /* main.m in Sources */,
+				94B7D03E1AC4AE2200C313CB /* MainViewController.m in Sources */,
 				94B7D02B1AC4A00600C313CB /* NSArray+Chameleon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
