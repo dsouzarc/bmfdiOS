@@ -37,6 +37,8 @@
 		94B7D0311AC4A00600C313CB /* PQFCirclesInTriangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0221AC4A00600C313CB /* PQFCirclesInTriangle.m */; };
 		94B7D0321AC4A00600C313CB /* UIColor+FlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0261AC4A00600C313CB /* UIColor+FlatColors.m */; };
 		94B7D0331AC4A00600C313CB /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0291AC4A00600C313CB /* UICKeyChainStore.m */; };
+		94B7D0391AC4A21F00C313CB /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0371AC4A21F00C313CB /* LogInViewController.m */; };
+		94B7D03A1AC4A21F00C313CB /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7D0381AC4A21F00C313CB /* LogInViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,9 @@
 		94B7D0261AC4A00600C313CB /* UIColor+FlatColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FlatColors.m"; sourceTree = "<group>"; };
 		94B7D0281AC4A00600C313CB /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICKeyChainStore.h; sourceTree = "<group>"; };
 		94B7D0291AC4A00600C313CB /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICKeyChainStore.m; sourceTree = "<group>"; };
+		94B7D0361AC4A21F00C313CB /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
+		94B7D0371AC4A21F00C313CB /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
+		94B7D0381AC4A21F00C313CB /* LogInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogInViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +159,9 @@
 		94B7CFCE1AC49E8300C313CB /* Bring Me Food Driver */ = {
 			isa = PBXGroup;
 			children = (
+				94B7D0361AC4A21F00C313CB /* LogInViewController.h */,
+				94B7D0371AC4A21F00C313CB /* LogInViewController.m */,
+				94B7D0381AC4A21F00C313CB /* LogInViewController.xib */,
 				94B7CFD31AC49E8300C313CB /* AppDelegate.h */,
 				94B7CFD41AC49E8300C313CB /* AppDelegate.m */,
 				94B7D0351AC4A03500C313CB /* Misc 3rd Party Libraries */,
@@ -356,6 +364,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94B7D03A1AC4A21F00C313CB /* LogInViewController.xib in Resources */,
 				94B7CFDB1AC49E8300C313CB /* Main.storyboard in Resources */,
 				94B7CFE01AC49E8300C313CB /* LaunchScreen.xib in Resources */,
 				94B7CFDD1AC49E8300C313CB /* Images.xcassets in Resources */,
@@ -376,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94B7D0391AC4A21F00C313CB /* LogInViewController.m in Sources */,
 				94B7D02C1AC4A00600C313CB /* UIColor+Chameleon.m in Sources */,
 				94B7D0311AC4A00600C313CB /* PQFCirclesInTriangle.m in Sources */,
 				94B7D02D1AC4A00600C313CB /* UIColor+CIELAB.m in Sources */,
