@@ -49,6 +49,9 @@
             [PFCloud callFunctionInBackground:@"userHasDriverRole"
                                withParameters:nil
                                         block:^(NSString *result, NSError *error) {
+                                            
+                                            [self.loadingIcon hide];
+                                            
                                             if(!error) {
                                                 
                                                 //Successful log in
@@ -58,10 +61,10 @@
                                                     self.keychain[@"password"] = self.passwordTextField.text;
                                                     
                                                     MainViewController *mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController"                                    bundle:[NSBundle mainBundle]];
-                                                    [self.loadingIcon hide];
                                                     self.view.window.rootViewController = mainViewController;
                                                 }
                                                 
+                                                //Not a driver
                                                 else {
                                                     [self showAlert:@"Not a Driver" alertMessage:@"Sorry, it looks like you do not have permission to be a driver" buttonTitle:@"Done"];
                                                     return;
@@ -69,8 +72,9 @@
                                                 
                                             }
                                             
+                                            //Misc. error
                                             else {
-                                                [self showAlert:@"Problem loggin in" alertMessage:@"Sorry, something went wrong while trying to log you in" buttonTitle:@"Try again"];
+                                                [self showAlert:@"Problem logging in" alertMessage:@"Sorry, something went wrong while trying to log you in" buttonTitle:@"Try again"];
                                                 return;
                                             }
                 
@@ -80,6 +84,7 @@
         
         //No BMF account
         else {
+            [self.loadingIcon hide];
             [self showAlert:@"Problem logging in" alertMessage:@"No BMF account found for entered username/password"buttonTitle:@"Try again"];
             return;
         }
