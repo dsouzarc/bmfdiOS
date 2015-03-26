@@ -41,6 +41,10 @@
 		94B7D03A1AC4A21F00C313CB /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7D0381AC4A21F00C313CB /* LogInViewController.xib */; };
 		94B7D03E1AC4AE2200C313CB /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D03C1AC4AE2200C313CB /* MainViewController.m */; };
 		94B7D03F1AC4AE2200C313CB /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7D03D1AC4AE2200C313CB /* MainViewController.xib */; };
+		94B7D0431AC4B3D900C313CB /* LiveOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0411AC4B3D900C313CB /* LiveOrdersViewController.m */; };
+		94B7D0441AC4B3D900C313CB /* LiveOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7D0421AC4B3D900C313CB /* LiveOrdersViewController.xib */; };
+		94B7D0481AC4B3ED00C313CB /* MyClaimedOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0461AC4B3ED00C313CB /* MyClaimedOrdersViewController.m */; };
+		94B7D0491AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +113,12 @@
 		94B7D03B1AC4AE2200C313CB /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		94B7D03C1AC4AE2200C313CB /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		94B7D03D1AC4AE2200C313CB /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		94B7D0401AC4B3D900C313CB /* LiveOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveOrdersViewController.h; sourceTree = "<group>"; };
+		94B7D0411AC4B3D900C313CB /* LiveOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveOrdersViewController.m; sourceTree = "<group>"; };
+		94B7D0421AC4B3D900C313CB /* LiveOrdersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveOrdersViewController.xib; sourceTree = "<group>"; };
+		94B7D0451AC4B3ED00C313CB /* MyClaimedOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClaimedOrdersViewController.h; sourceTree = "<group>"; };
+		94B7D0461AC4B3ED00C313CB /* MyClaimedOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClaimedOrdersViewController.m; sourceTree = "<group>"; };
+		94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyClaimedOrdersViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +174,12 @@
 		94B7CFCE1AC49E8300C313CB /* Bring Me Food Driver */ = {
 			isa = PBXGroup;
 			children = (
+				94B7D0451AC4B3ED00C313CB /* MyClaimedOrdersViewController.h */,
+				94B7D0461AC4B3ED00C313CB /* MyClaimedOrdersViewController.m */,
+				94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */,
+				94B7D0401AC4B3D900C313CB /* LiveOrdersViewController.h */,
+				94B7D0411AC4B3D900C313CB /* LiveOrdersViewController.m */,
+				94B7D0421AC4B3D900C313CB /* LiveOrdersViewController.xib */,
 				94B7D03B1AC4AE2200C313CB /* MainViewController.h */,
 				94B7D03C1AC4AE2200C313CB /* MainViewController.m */,
 				94B7D03D1AC4AE2200C313CB /* MainViewController.xib */,
@@ -373,6 +389,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				94B7D03A1AC4A21F00C313CB /* LogInViewController.xib in Resources */,
+				94B7D0441AC4B3D900C313CB /* LiveOrdersViewController.xib in Resources */,
+				94B7D0491AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib in Resources */,
 				94B7CFDB1AC49E8300C313CB /* Main.storyboard in Resources */,
 				94B7D03F1AC4AE2200C313CB /* MainViewController.xib in Resources */,
 				94B7CFE01AC49E8300C313CB /* LaunchScreen.xib in Resources */,
@@ -397,12 +415,14 @@
 				94B7D0391AC4A21F00C313CB /* LogInViewController.m in Sources */,
 				94B7D02C1AC4A00600C313CB /* UIColor+Chameleon.m in Sources */,
 				94B7D0311AC4A00600C313CB /* PQFCirclesInTriangle.m in Sources */,
+				94B7D0431AC4B3D900C313CB /* LiveOrdersViewController.m in Sources */,
 				94B7D02D1AC4A00600C313CB /* UIColor+CIELAB.m in Sources */,
 				94B7D02A1AC4A00600C313CB /* ChameleonStatusBar.m in Sources */,
 				94B7D02F1AC4A00600C313CB /* PQFBarsInCircle.m in Sources */,
 				94B7D02E1AC4A00600C313CB /* UIViewController+Chameleon.m in Sources */,
 				94B7D0331AC4A00600C313CB /* UICKeyChainStore.m in Sources */,
 				94B7CFD81AC49E8300C313CB /* ViewController.m in Sources */,
+				94B7D0481AC4B3ED00C313CB /* MyClaimedOrdersViewController.m in Sources */,
 				94B7CFD51AC49E8300C313CB /* AppDelegate.m in Sources */,
 				94B7D0321AC4A00600C313CB /* UIColor+FlatColors.m in Sources */,
 				94B7D0301AC4A00600C313CB /* PQFBouncingBalls.m in Sources */,

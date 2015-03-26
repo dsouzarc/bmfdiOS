@@ -1,5 +1,5 @@
 //
-//  MainViewController.h
+//  MyClaimedOrdersViewController.h
 //  Bring Me Food Driver
 //
 //  Created by Ryan D'souza on 3/26/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UIViewController <UITabBarControllerDelegate>
+@interface MyClaimedOrdersViewController : UIViewController
 
 @end

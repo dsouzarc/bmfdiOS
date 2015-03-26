@@ -7,31 +7,45 @@
 //
 
 #import "MainViewController.h"
+#import "MyClaimedOrdersViewController.h"
+#import "LiveOrdersViewController.h"
 
 @interface MainViewController ()
+
+@property (strong, nonatomic) MyClaimedOrdersViewController *myClaimedOrdersViewController;
+@property (strong, nonatomic) LiveOrdersViewController *liveOrdersViewController;
+
+@property (strong, nonatomic) UITabBarController *tabBarController;
 
 @end
 
 @implementation MainViewController
 
+- (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    if(self) {
+        self.myClaimedOrdersViewController = [[MyClaimedOrdersViewController alloc] initWithNibName:@"MyClaimedOrdersViewController" bundle:[NSBundle mainBundle]];
+        self.myClaimedOrdersViewController.tabBarItem.title = @"My Claimed Orders";
+        
+        self.liveOrdersViewController = [[LiveOrdersViewController alloc] initWithNibName:@"LiveOrdersViewController" bundle:[NSBundle mainBundle]];
+        self.liveOrdersViewController.tabBarItem.title = @"Live Orders";
+        
+        self.tabBarController = [[UITabBarController alloc] init];
+        
+        self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.myClaimedOrdersViewController, self.liveOrdersViewController, nil];
+        [self.view addSubview:self.tabBarController.view];
+
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
