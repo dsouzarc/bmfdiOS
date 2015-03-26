@@ -27,6 +27,16 @@
 		94B7D00A1AC49FC700C313CB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B7D0091AC49FC700C313CB /* SystemConfiguration.framework */; };
 		94B7D00C1AC49FCC00C313CB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B7D00B1AC49FCC00C313CB /* libz.dylib */; };
 		94B7D00E1AC49FD300C313CB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B7D00D1AC49FD300C313CB /* libsqlite3.dylib */; };
+		94B7D02A1AC4A00600C313CB /* ChameleonStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0131AC4A00600C313CB /* ChameleonStatusBar.m */; };
+		94B7D02B1AC4A00600C313CB /* NSArray+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0151AC4A00600C313CB /* NSArray+Chameleon.m */; };
+		94B7D02C1AC4A00600C313CB /* UIColor+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0171AC4A00600C313CB /* UIColor+Chameleon.m */; };
+		94B7D02D1AC4A00600C313CB /* UIColor+CIELAB.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0191AC4A00600C313CB /* UIColor+CIELAB.m */; };
+		94B7D02E1AC4A00600C313CB /* UIViewController+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D01B1AC4A00600C313CB /* UIViewController+Chameleon.m */; };
+		94B7D02F1AC4A00600C313CB /* PQFBarsInCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D01E1AC4A00600C313CB /* PQFBarsInCircle.m */; };
+		94B7D0301AC4A00600C313CB /* PQFBouncingBalls.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0201AC4A00600C313CB /* PQFBouncingBalls.m */; };
+		94B7D0311AC4A00600C313CB /* PQFCirclesInTriangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0221AC4A00600C313CB /* PQFCirclesInTriangle.m */; };
+		94B7D0321AC4A00600C313CB /* UIColor+FlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0261AC4A00600C313CB /* UIColor+FlatColors.m */; };
+		94B7D0331AC4A00600C313CB /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0291AC4A00600C313CB /* UICKeyChainStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +76,29 @@
 		94B7D0091AC49FC700C313CB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		94B7D00B1AC49FCC00C313CB /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		94B7D00D1AC49FD300C313CB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		94B7D0101AC4A00600C313CB /* Chameleon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chameleon.h; sourceTree = "<group>"; };
+		94B7D0111AC4A00600C313CB /* ChameleonMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChameleonMacros.h; sourceTree = "<group>"; };
+		94B7D0121AC4A00600C313CB /* ChameleonStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChameleonStatusBar.h; sourceTree = "<group>"; };
+		94B7D0131AC4A00600C313CB /* ChameleonStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChameleonStatusBar.m; sourceTree = "<group>"; };
+		94B7D0141AC4A00600C313CB /* NSArray+Chameleon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Chameleon.h"; sourceTree = "<group>"; };
+		94B7D0151AC4A00600C313CB /* NSArray+Chameleon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Chameleon.m"; sourceTree = "<group>"; };
+		94B7D0161AC4A00600C313CB /* UIColor+Chameleon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Chameleon.h"; sourceTree = "<group>"; };
+		94B7D0171AC4A00600C313CB /* UIColor+Chameleon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Chameleon.m"; sourceTree = "<group>"; };
+		94B7D0181AC4A00600C313CB /* UIColor+CIELAB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CIELAB.h"; sourceTree = "<group>"; };
+		94B7D0191AC4A00600C313CB /* UIColor+CIELAB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CIELAB.m"; sourceTree = "<group>"; };
+		94B7D01A1AC4A00600C313CB /* UIViewController+Chameleon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Chameleon.h"; sourceTree = "<group>"; };
+		94B7D01B1AC4A00600C313CB /* UIViewController+Chameleon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Chameleon.m"; sourceTree = "<group>"; };
+		94B7D01D1AC4A00600C313CB /* PQFBarsInCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PQFBarsInCircle.h; sourceTree = "<group>"; };
+		94B7D01E1AC4A00600C313CB /* PQFBarsInCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PQFBarsInCircle.m; sourceTree = "<group>"; };
+		94B7D01F1AC4A00600C313CB /* PQFBouncingBalls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PQFBouncingBalls.h; sourceTree = "<group>"; };
+		94B7D0201AC4A00600C313CB /* PQFBouncingBalls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PQFBouncingBalls.m; sourceTree = "<group>"; };
+		94B7D0211AC4A00600C313CB /* PQFCirclesInTriangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PQFCirclesInTriangle.h; sourceTree = "<group>"; };
+		94B7D0221AC4A00600C313CB /* PQFCirclesInTriangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PQFCirclesInTriangle.m; sourceTree = "<group>"; };
+		94B7D0231AC4A00600C313CB /* PQFCustomLoaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PQFCustomLoaders.h; sourceTree = "<group>"; };
+		94B7D0251AC4A00600C313CB /* UIColor+FlatColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FlatColors.h"; sourceTree = "<group>"; };
+		94B7D0261AC4A00600C313CB /* UIColor+FlatColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FlatColors.m"; sourceTree = "<group>"; };
+		94B7D0281AC4A00600C313CB /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICKeyChainStore.h; sourceTree = "<group>"; };
+		94B7D0291AC4A00600C313CB /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICKeyChainStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +135,10 @@
 		94B7CFC31AC49E8300C313CB = {
 			isa = PBXGroup;
 			children = (
+				94B7D00F1AC4A00600C313CB /* Chameleon */,
+				94B7D01C1AC4A00600C313CB /* PQFCustomLoaders */,
+				94B7D0241AC4A00600C313CB /* UIColor+FlatColors */,
+				94B7D0271AC4A00600C313CB /* UIKeyChainStore */,
 				94B7D00D1AC49FD300C313CB /* libsqlite3.dylib */,
 				94B7D00B1AC49FCC00C313CB /* libz.dylib */,
 				94B7D0091AC49FC700C313CB /* SystemConfiguration.framework */,
@@ -169,6 +206,57 @@
 				94B7CFEA1AC49E8300C313CB /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		94B7D00F1AC4A00600C313CB /* Chameleon */ = {
+			isa = PBXGroup;
+			children = (
+				94B7D0101AC4A00600C313CB /* Chameleon.h */,
+				94B7D0111AC4A00600C313CB /* ChameleonMacros.h */,
+				94B7D0121AC4A00600C313CB /* ChameleonStatusBar.h */,
+				94B7D0131AC4A00600C313CB /* ChameleonStatusBar.m */,
+				94B7D0141AC4A00600C313CB /* NSArray+Chameleon.h */,
+				94B7D0151AC4A00600C313CB /* NSArray+Chameleon.m */,
+				94B7D0161AC4A00600C313CB /* UIColor+Chameleon.h */,
+				94B7D0171AC4A00600C313CB /* UIColor+Chameleon.m */,
+				94B7D0181AC4A00600C313CB /* UIColor+CIELAB.h */,
+				94B7D0191AC4A00600C313CB /* UIColor+CIELAB.m */,
+				94B7D01A1AC4A00600C313CB /* UIViewController+Chameleon.h */,
+				94B7D01B1AC4A00600C313CB /* UIViewController+Chameleon.m */,
+			);
+			path = Chameleon;
+			sourceTree = "<group>";
+		};
+		94B7D01C1AC4A00600C313CB /* PQFCustomLoaders */ = {
+			isa = PBXGroup;
+			children = (
+				94B7D01D1AC4A00600C313CB /* PQFBarsInCircle.h */,
+				94B7D01E1AC4A00600C313CB /* PQFBarsInCircle.m */,
+				94B7D01F1AC4A00600C313CB /* PQFBouncingBalls.h */,
+				94B7D0201AC4A00600C313CB /* PQFBouncingBalls.m */,
+				94B7D0211AC4A00600C313CB /* PQFCirclesInTriangle.h */,
+				94B7D0221AC4A00600C313CB /* PQFCirclesInTriangle.m */,
+				94B7D0231AC4A00600C313CB /* PQFCustomLoaders.h */,
+			);
+			path = PQFCustomLoaders;
+			sourceTree = "<group>";
+		};
+		94B7D0241AC4A00600C313CB /* UIColor+FlatColors */ = {
+			isa = PBXGroup;
+			children = (
+				94B7D0251AC4A00600C313CB /* UIColor+FlatColors.h */,
+				94B7D0261AC4A00600C313CB /* UIColor+FlatColors.m */,
+			);
+			path = "UIColor+FlatColors";
+			sourceTree = "<group>";
+		};
+		94B7D0271AC4A00600C313CB /* UIKeyChainStore */ = {
+			isa = PBXGroup;
+			children = (
+				94B7D0281AC4A00600C313CB /* UICKeyChainStore.h */,
+				94B7D0291AC4A00600C313CB /* UICKeyChainStore.m */,
+			);
+			path = UIKeyChainStore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,9 +359,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94B7D02C1AC4A00600C313CB /* UIColor+Chameleon.m in Sources */,
+				94B7D0311AC4A00600C313CB /* PQFCirclesInTriangle.m in Sources */,
+				94B7D02D1AC4A00600C313CB /* UIColor+CIELAB.m in Sources */,
+				94B7D02A1AC4A00600C313CB /* ChameleonStatusBar.m in Sources */,
+				94B7D02F1AC4A00600C313CB /* PQFBarsInCircle.m in Sources */,
+				94B7D02E1AC4A00600C313CB /* UIViewController+Chameleon.m in Sources */,
+				94B7D0331AC4A00600C313CB /* UICKeyChainStore.m in Sources */,
 				94B7CFD81AC49E8300C313CB /* ViewController.m in Sources */,
 				94B7CFD51AC49E8300C313CB /* AppDelegate.m in Sources */,
+				94B7D0321AC4A00600C313CB /* UIColor+FlatColors.m in Sources */,
+				94B7D0301AC4A00600C313CB /* PQFBouncingBalls.m in Sources */,
 				94B7CFD21AC49E8300C313CB /* main.m in Sources */,
+				94B7D02B1AC4A00600C313CB /* NSArray+Chameleon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
