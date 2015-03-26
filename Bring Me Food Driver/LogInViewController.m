@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "UICKeyChainStore.h"
 #import "PQFBarsInCircle.h"
+#import "MainViewController.h"
 
 @interface LogInViewController ()
 
@@ -24,6 +25,67 @@
 @end
 
 @implementation LogInViewController
+
+- (IBAction)loginButton:(id)sender {
+    if(self.usernameTextField.text.length <= 4) {
+        [self showAlert:@"Invalid Username" alertMessage:@"Please enter a valid username" buttonTitle:@"Try again"];
+        return;
+    }
+    
+    if(self.passwordTextField.text.length <= 4) {
+        [self showAlert:@"Invalid Password" alertMessage:@"Please enter a valid password" buttonTitle:@"Try again"];
+        return;
+    }
+    
+    [self.loadingIcon show];
+    
+    //Log into BMF
+    [PFUser logInWithUsernameInBackground:self.usernameTextField.text
+                                 password:self.passwordTextField.text
+                                    block:^(PFUser *user, NSError *error) {
+        //If they have a BMF Account
+        if(user) {
+            
+            [PFCloud callFunctionInBackground:@"userHasDriverRole"
+                               withParameters:nil
+                                        block:^(NSString *result, NSError *error) {
+                                            if(!error) {
+                                                
+                                                //Successful log in
+                                                if([result containsString:@"YES"]) {
+                                                    
+                                                    self.keychain[@"username"] = self.usernameTextField.text;
+                                                    self.keychain[@"password"] = self.passwordTextField.text;
+                                                    
+                                                    MainViewController *mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController"                                    bundle:[NSBundle mainBundle]];
+                                                    [self.loadingIcon hide];
+                                                    self.view.window.rootViewController = mainViewController;
+                                                }
+                                                
+                                                else {
+                                                    [self showAlert:@"Not a Driver" alertMessage:@"Sorry, it looks like you do not have permission to be a driver" buttonTitle:@"Done"];
+                                                    return;
+                                                }
+                                                
+                                            }
+                                            
+                                            else {
+                                                [self showAlert:@"Problem loggin in" alertMessage:@"Sorry, something went wrong while trying to log you in" buttonTitle:@"Try again"];
+                                                return;
+                                            }
+                
+            }];
+            
+        }
+        
+        //No BMF account
+        else {
+            [self showAlert:@"Problem logging in" alertMessage:@"No BMF account found for entered username/password"buttonTitle:@"Try again"];
+            return;
+        }
+        
+    }];
+}
 
 - (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -76,21 +138,10 @@
     [super viewDidLoad];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void) showAlert:(NSString*)alertTitle alertMessage:(NSString*)alertMessage buttonTitle:(NSString*)buttonTitle
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:nil cancelButtonTitle:buttonTitle otherButtonTitles:nil, nil];
+    [alert show];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (IBAction)loginButton:(id)sender {
-}
 @end
