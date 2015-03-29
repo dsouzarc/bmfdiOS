@@ -60,18 +60,22 @@
                                                     self.keychain[@"username"] = self.usernameTextField.text;
                                                     self.keychain[@"password"] = self.passwordTextField.text;
                                                     
-                                                    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-                                                    
-                                                    [currentInstallation addUniqueObject:@"Driver" forKey:@"channels"];
-                                                    [currentInstallation saveInBackgroundWithBlock:^(BOOL success, NSError *error) {
-                                                        if(error) {
-                                                            NSLog(@"DID NOT SAVE");
-                                                        }
-                                                        else {
-                                                            NSLog(@"SAVED");
-                                                        }
-                                                    }];
-                                                    
+                                                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                                        
+                                                        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+                                                        
+                                                        [currentInstallation addUniqueObject:@"Driver" forKey:@"channels"];
+                                                        [currentInstallation saveInBackgroundWithBlock:^(BOOL success, NSError *error) {
+                                                            if(error) {
+                                                                NSLog(@"DID NOT SAVE");
+                                                            }
+                                                            else {
+                                                                NSLog(@"SAVED");
+                                                            }
+                                                        }];
+                                                        
+                                                    });
+
                                                     MainViewController *mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController"                                    bundle:[NSBundle mainBundle]];
                                                     self.view.window.rootViewController = mainViewController;
                                                 }
