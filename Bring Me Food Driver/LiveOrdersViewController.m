@@ -7,31 +7,62 @@
 //
 
 #import "LiveOrdersViewController.h"
+#import "UnclaimedOrdersTableViewCell.h"
 
 @interface LiveOrdersViewController ()
+
+@property (strong, nonatomic) IBOutlet UITableView *liveOrdersTableView;
+@property (strong, nonatomic) NSMutableArray *unclaimedOrdersArray;
+
+- (IBAction)refreshLiveOrders:(id)sender;
 
 @end
 
 @implementation LiveOrdersViewController
 
+static NSString *cellIdentifier = @"UnclaimedOrdersCell";
+
+- (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    if(self) {
+        self.unclaimedOrdersArray = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UnclaimedOrdersTableViewCell *cell = [self.liveOrdersTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if(!cell) {
+        cell = [[UnclaimedOrdersTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    return cell;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self.liveOrdersTableView registerNib:[UINib nibWithNibName:@"UnclaimedOrdersTableViewCell"
+                                                         bundle:[NSBundle mainBundle]]
+                   forCellReuseIdentifier:cellIdentifier];
+    [self updateLiveOrders];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void) updateLiveOrders
+{
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.unclaimedOrdersArray.count;
 }
-*/
 
+- (IBAction)refreshLiveOrders:(id)sender {
+    [self updateLiveOrders];
+}
 @end

@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LiveOrdersViewController">
             <connections>
+                <outlet property="liveOrdersTableView" destination="jVA-AZ-0k7" id="o2T-rT-LxB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="iQk-kZ-JTH"/>
             </connections>
         </placeholder>
@@ -14,14 +15,30 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Live Orders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEY-HJ-DmO">
-                    <rect key="frame" x="166" y="323" width="88" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jVA-AZ-0k7">
+                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ps-Cx-Yor">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <items>
+                        <navigationItem title="Live Orders" id="VWh-dw-noh">
+                            <barButtonItem key="leftBarButtonItem" title="Refresh" systemItem="refresh" id="VZS-C8-wqW">
+                                <connections>
+                                    <action selector="refreshLiveOrders:" destination="-1" id="4Tj-Io-NJ4"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="jVA-AZ-0k7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1MQ-47-Ej4"/>
+                <constraint firstItem="jVA-AZ-0k7" firstAttribute="top" secondItem="8Ps-Cx-Yor" secondAttribute="bottom" id="Gu9-W3-zeU"/>
+                <constraint firstAttribute="bottom" secondItem="jVA-AZ-0k7" secondAttribute="bottom" id="Pyt-cG-VIc"/>
+                <constraint firstAttribute="trailing" secondItem="jVA-AZ-0k7" secondAttribute="trailing" id="wJT-wG-xve"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
         </view>
     </objects>

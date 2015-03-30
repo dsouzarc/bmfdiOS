@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LiveOrdersViewController : UIViewController
+@interface LiveOrdersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end
