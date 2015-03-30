@@ -160,6 +160,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		947BA3761AC9E79F0005D763 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				9411974F1AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.h */,
+				941197501AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m */,
+				941197511AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.xib */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
 		94B7CFC31AC49E8300C313CB = {
 			isa = PBXGroup;
 			children = (
@@ -182,9 +192,7 @@
 		94B7CFCE1AC49E8300C313CB /* Bring Me Food Driver */ = {
 			isa = PBXGroup;
 			children = (
-				9411974F1AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.h */,
-				941197501AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m */,
-				941197511AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.xib */,
+				947BA3761AC9E79F0005D763 /* TableViewCells */,
 				94B7D0451AC4B3ED00C313CB /* MyClaimedOrdersViewController.h */,
 				94B7D0461AC4B3ED00C313CB /* MyClaimedOrdersViewController.m */,
 				94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */,

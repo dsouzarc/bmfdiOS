@@ -16,10 +16,11 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *liveOrdersTableView;
 
+@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSMutableArray *unclaimedOrdersArray;
 @property (strong, nonatomic) PQFBouncingBalls *loadingAnimation;
-- (IBAction)refreshLiveOrders:(id)sender;
 
+- (IBAction)refreshLiveOrders:(id)sender;
 
 @end
 
@@ -35,6 +36,10 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
         self.unclaimedOrdersArray = [[NSMutableArray alloc] init];
         self.loadingAnimation = [[PQFBouncingBalls alloc] initLoaderOnView:self.view];
         self.loadingAnimation.loaderColor = [UIColor blueColor];
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        [self.locationManager startUpdatingLocation];
     }
     return self;
 }
@@ -56,6 +61,27 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     
     return cell;
 }
+
+- (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"ERROR GETTING LOCATION: ");
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation* location = [locations lastObject];
+    NSDate* eventDate = location.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (abs(howRecent) < 15.0) {
+        // Update your marker on your map using location.coordinate.latitude
+        //and location.coordinate.longitude);
+    }
+}
+
 
 - (NSString*) getNiceDate:(NSDate*)date
 {
@@ -80,12 +106,30 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.locationManager requestAlwaysAuthorization];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [self.liveOrdersTableView registerNib:[UINib nibWithNibName:@"UnclaimedOrdersTableViewCell"
                                                          bundle:[NSBundle mainBundle]]
                    forCellReuseIdentifier:cellIdentifier];
     [self updateLiveOrders];
+    
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
+        NSString *title;
+        title = (status == kCLAuthorizationStatusDenied) ? @"Location services are off" : @"Background location is not enabled";
+        NSString *message = @"To use background location you must turn on 'Always' in the Location Services Settings";
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                            message:message
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Settings", nil];
+        [alertView show];
+    }
+    else if (status == kCLAuthorizationStatusNotDetermined) {
+        [self.locationManager requestAlwaysAuthorization];
+    }
 }
 
 - (void) updateLiveOrders
@@ -100,7 +144,6 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
             for(NSDictionary *unclaimed in result) {
                 Order *order = [[Order alloc] initUsingDictionary:unclaimed];
                 [self.unclaimedOrdersArray addObject:order];
-                NSLog(@"DELIVER ADDRESS: %@", order.deliveryAddressString);
             }
             
             [self.loadingAnimation hide];
@@ -114,8 +157,16 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
             NSLog(problem.description);
         }
     }];
+    
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+        
+        NSLog(@"User is currently at %f, %f", geoPoint.latitude, geoPoint.longitude);
+        //self.userLocation = geoPoint;
+        [[PFUser currentUser] setObject:geoPoint forKey:@"currentLocation"];
+        [[PFUser currentUser] saveInBackground];
+        
+    }];
 }
-
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
