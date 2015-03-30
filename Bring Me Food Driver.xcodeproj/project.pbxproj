@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		941197521AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 941197501AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m */; };
 		941197531AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 941197511AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.xib */; };
+		941197561AC9A7700002FDEE /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 941197551AC9A7700002FDEE /* Order.m */; };
 		94B7CFD21AC49E8300C313CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7CFD11AC49E8300C313CB /* main.m */; };
 		94B7CFD51AC49E8300C313CB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7CFD41AC49E8300C313CB /* AppDelegate.m */; };
 		94B7CFD81AC49E8300C313CB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7CFD71AC49E8300C313CB /* ViewController.m */; };
@@ -63,6 +64,8 @@
 		9411974F1AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnclaimedOrdersTableViewCell.h; sourceTree = "<group>"; };
 		941197501AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnclaimedOrdersTableViewCell.m; sourceTree = "<group>"; };
 		941197511AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnclaimedOrdersTableViewCell.xib; sourceTree = "<group>"; };
+		941197541AC9A7700002FDEE /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
+		941197551AC9A7700002FDEE /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		94B7CFCC1AC49E8300C313CB /* Bring Me Food Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bring Me Food Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B7CFD01AC49E8300C313CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94B7CFD11AC49E8300C313CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 				94B7CFDC1AC49E8300C313CB /* Images.xcassets */,
 				94B7CFDE1AC49E8300C313CB /* LaunchScreen.xib */,
 				94B7CFCF1AC49E8300C313CB /* Supporting Files */,
+				941197541AC9A7700002FDEE /* Order.h */,
+				941197551AC9A7700002FDEE /* Order.m */,
 			);
 			path = "Bring Me Food Driver";
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 				94B7CFD51AC49E8300C313CB /* AppDelegate.m in Sources */,
 				94B7D0321AC4A00600C313CB /* UIColor+FlatColors.m in Sources */,
 				94B7D0301AC4A00600C313CB /* PQFBouncingBalls.m in Sources */,
+				941197561AC9A7700002FDEE /* Order.m in Sources */,
 				94B7CFD21AC49E8300C313CB /* main.m in Sources */,
 				94B7D03E1AC4AE2200C313CB /* MainViewController.m in Sources */,
 				94B7D02B1AC4A00600C313CB /* NSArray+Chameleon.m in Sources */,

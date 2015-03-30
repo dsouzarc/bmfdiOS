@@ -44,8 +44,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     
+    [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                            withAnimation:UIStatusBarAnimationFade];
+}
+
+- (BOOL) prefersStatusBarHidden
+{
+    return YES;
 }
 
 @end

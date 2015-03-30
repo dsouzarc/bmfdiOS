@@ -6,40 +6,42 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LiveOrdersViewController">
             <connections>
-                <outlet property="liveOrdersTableView" destination="jVA-AZ-0k7" id="o2T-rT-LxB"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="iQk-kZ-JTH"/>
+                <outlet property="liveOrdersTableView" destination="ABt-R3-SjV" id="y2a-iq-put"/>
+                <outlet property="refreshLiveOrders" destination="Z4M-6t-4up" id="8GX-Ty-KuR"/>
+                <outlet property="view" destination="QEh-h0-i1s" id="wiO-jD-oNq"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view contentMode="scaleToFill" id="QEh-h0-i1s">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jVA-AZ-0k7">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ABt-R3-SjV">
                     <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ps-Cx-Yor">
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Etc-XL-Ohf">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <items>
-                        <navigationItem title="Live Orders" id="VWh-dw-noh">
-                            <barButtonItem key="leftBarButtonItem" title="Refresh" systemItem="refresh" id="VZS-C8-wqW">
-                                <connections>
-                                    <action selector="refreshLiveOrders:" destination="-1" id="4Tj-Io-NJ4"/>
-                                </connections>
-                            </barButtonItem>
+                        <navigationItem title="Live Orders" id="yoM-ns-xhz">
+                            <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="Z4M-6t-4up"/>
                         </navigationItem>
                     </items>
                 </navigationBar>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="jVA-AZ-0k7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1MQ-47-Ej4"/>
-                <constraint firstItem="jVA-AZ-0k7" firstAttribute="top" secondItem="8Ps-Cx-Yor" secondAttribute="bottom" id="Gu9-W3-zeU"/>
-                <constraint firstAttribute="bottom" secondItem="jVA-AZ-0k7" secondAttribute="bottom" id="Pyt-cG-VIc"/>
-                <constraint firstAttribute="trailing" secondItem="jVA-AZ-0k7" secondAttribute="trailing" id="wJT-wG-xve"/>
+                <constraint firstItem="Etc-XL-Ohf" firstAttribute="leading" secondItem="QEh-h0-i1s" secondAttribute="leading" id="0mv-lE-SYp"/>
+                <constraint firstItem="ABt-R3-SjV" firstAttribute="top" secondItem="Etc-XL-Ohf" secondAttribute="bottom" id="6Ah-1i-tPI"/>
+                <constraint firstAttribute="bottom" secondItem="ABt-R3-SjV" secondAttribute="bottom" id="7re-mN-c4U"/>
+                <constraint firstItem="Etc-XL-Ohf" firstAttribute="top" secondItem="QEh-h0-i1s" secondAttribute="top" id="SkG-up-euu"/>
+                <constraint firstAttribute="trailing" secondItem="ABt-R3-SjV" secondAttribute="trailing" id="aJ3-dO-q9y"/>
+                <constraint firstItem="ABt-R3-SjV" firstAttribute="leading" secondItem="QEh-h0-i1s" secondAttribute="leading" id="h9y-DL-fOE"/>
+                <constraint firstItem="ABt-R3-SjV" firstAttribute="top" secondItem="Etc-XL-Ohf" secondAttribute="bottom" id="iwm-2p-qcY"/>
+                <constraint firstAttribute="trailing" secondItem="Etc-XL-Ohf" secondAttribute="trailing" id="tiG-Yz-jfy"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="289" y="-359"/>
         </view>
     </objects>
 </document>

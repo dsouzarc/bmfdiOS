@@ -8,13 +8,16 @@
 
 #import "LiveOrdersViewController.h"
 #import "UnclaimedOrdersTableViewCell.h"
+#import "PQFBouncingBalls.h"
 
 @interface LiveOrdersViewController ()
 
 @property (strong, nonatomic) IBOutlet UITableView *liveOrdersTableView;
-@property (strong, nonatomic) NSMutableArray *unclaimedOrdersArray;
 
-- (IBAction)refreshLiveOrders:(id)sender;
+@property (strong, nonatomic) NSMutableArray *unclaimedOrdersArray;
+@property (strong, nonatomic) PQFBouncingBalls *loadingAnimation;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshLiveOrders;
+
 
 @end
 
@@ -28,6 +31,8 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     
     if(self) {
         self.unclaimedOrdersArray = [[NSMutableArray alloc] init];
+        self.loadingAnimation = [[PQFBouncingBalls alloc] initLoaderOnView:self.view];
+        self.loadingAnimation.loaderColor = [UIColor blueColor];
     }
     return self;
 }
@@ -45,6 +50,7 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [self.liveOrdersTableView registerNib:[UINib nibWithNibName:@"UnclaimedOrdersTableViewCell"
                                                          bundle:[NSBundle mainBundle]]
@@ -54,6 +60,8 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
 
 - (void) updateLiveOrders
 {
+    [self.loadingAnimation show];
+    
     
 }
 
@@ -65,4 +73,10 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
 - (IBAction)refreshLiveOrders:(id)sender {
     [self updateLiveOrders];
 }
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 102;
+}
+
 @end
