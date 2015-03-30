@@ -11,7 +11,7 @@
 
 @implementation Order
 
-- (instancetype) initWithEverything:(NSString *)orderId ordererName:(NSString *)ordererName deliveryAddressString:(NSString *)deliveryAddressString deliveryAddress:(PFGeoPoint *)deliveryAddress orderStatus:(NSInteger)orderStatus timeToDeliverAt:(NSDate *)timeToDeliverAt estimatedDeliveryTime:(NSDate*)estimatedDeliveryTime chosenItems:(NSArray *)chosenItems
+- (instancetype) initWithEverything:(NSString *)orderId ordererName:(NSString *)ordererName deliveryAddressString:(NSString *)deliveryAddressString deliveryAddress:(PFGeoPoint *)deliveryAddress orderStatus:(NSInteger)orderStatus timeToDeliverAt:(NSDate *)timeToDeliverAt estimatedDeliveryTime:(NSDate*)estimatedDeliveryTime chosenItems:(NSArray *)chosenItems restaurantName:(NSString *)restaurantName
 {
     self = [super init];
     
@@ -24,7 +24,22 @@
         self.estimatedDeliveryTime = estimatedDeliveryTime;
         self.timeToBeDeliveredAt = timeToDeliverAt;
         self.chosenItems = chosenItems;
+        self.restaurantName = restaurantName;
     }
+    
+    return self;
+}
+
+- (instancetype) initUsingDictionary:(NSDictionary *)dictionary
+{
+    self = [self initWithEverything:dictionary[@"orderId"]
+                        ordererName:dictionary[@"ordererName"]
+              deliveryAddressString:dictionary[@"deliveryAddressString"]
+                    deliveryAddress:dictionary[@"deliveryAddress"]
+                        orderStatus:[dictionary[@"orderStatus"] integerValue]
+                    timeToDeliverAt:dictionary[@"timeToDeliverAt"] estimatedDeliveryTime:dictionary[@"estimatedDeliveryTime"]
+                        chosenItems:dictionary[@"chosenItems"]
+            restaurantName:dictionary[@"restaurantName"]];
     
     return self;
 }

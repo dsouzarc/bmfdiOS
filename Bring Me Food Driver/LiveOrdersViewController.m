@@ -8,7 +8,9 @@
 
 #import "LiveOrdersViewController.h"
 #import "UnclaimedOrdersTableViewCell.h"
+#import <Parse/Parse.h>
 #import "PQFBouncingBalls.h"
+#import "Order.h"
 
 @interface LiveOrdersViewController ()
 
@@ -16,7 +18,7 @@
 
 @property (strong, nonatomic) NSMutableArray *unclaimedOrdersArray;
 @property (strong, nonatomic) PQFBouncingBalls *loadingAnimation;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshLiveOrders;
+- (IBAction)refreshLiveOrders:(id)sender;
 
 
 @end
@@ -45,7 +47,35 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
         cell = [[UnclaimedOrdersTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
+    Order *order = [self.unclaimedOrdersArray objectAtIndex:indexPath.row];
+    
+    cell.restaurantName.text = order.restaurantName;
+    
+    cell.orderedForTime.text = [NSString stringWithFormat:@"Ordered for: %@", [self getNiceDate:order.timeToBeDeliveredAt]];
+    cell.drivingDistance.text = order.deliveryAddressString;
+    
     return cell;
+}
+
+- (NSString*) getNiceDate:(NSDate*)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    
+    NSString *time = [dateFormatter stringFromDate:date];
+    
+    //If it is today, just say
+    BOOL isToday = [[NSCalendar currentCalendar] isDateInToday:date];
+    
+    
+    if(isToday) {
+        return [NSString stringWithFormat:@"Today @: %@", time];
+    }
+    else {
+        [dateFormatter setDateFormat:@"dd/MM"];
+        
+        return [NSString stringWithFormat:@"%@ on %@", time, [dateFormatter stringFromDate:date]];
+    }
 }
 
 - (void)viewDidLoad {
@@ -62,21 +92,43 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
 {
     [self.loadingAnimation show];
     
-    
+    [PFCloud callFunctionInBackground:@"getUnclaimedOrders" withParameters:nil block:^(NSArray *result, NSError *problem) {
+        if(!problem) {
+            
+            [self.unclaimedOrdersArray removeAllObjects];
+            
+            for(NSDictionary *unclaimed in result) {
+                Order *order = [[Order alloc] initUsingDictionary:unclaimed];
+                [self.unclaimedOrdersArray addObject:order];
+                NSLog(@"DELIVER ADDRESS: %@", order.deliveryAddressString);
+            }
+            
+            [self.loadingAnimation hide];
+            [self.liveOrdersTableView reloadData];
+            
+            NSLog(@"DONE %ld", (long)self.unclaimedOrdersArray.count);
+        }
+        
+        else {
+            NSLog(@"Problem");
+            NSLog(problem.description);
+        }
+    }];
 }
+
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.unclaimedOrdersArray.count;
 }
 
-- (IBAction)refreshLiveOrders:(id)sender {
-    [self updateLiveOrders];
-}
-
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 102;
+}
+
+- (IBAction)refreshLiveOrders:(id)sender {
+    [self updateLiveOrders];
 }
 
 @end

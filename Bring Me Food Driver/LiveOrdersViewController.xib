@@ -7,7 +7,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LiveOrdersViewController">
             <connections>
                 <outlet property="liveOrdersTableView" destination="ABt-R3-SjV" id="y2a-iq-put"/>
-                <outlet property="refreshLiveOrders" destination="Z4M-6t-4up" id="8GX-Ty-KuR"/>
                 <outlet property="view" destination="QEh-h0-i1s" id="wiO-jD-oNq"/>
             </connections>
         </placeholder>
@@ -19,12 +18,20 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ABt-R3-SjV">
                     <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="cNv-CB-Et0"/>
+                        <outlet property="delegate" destination="-1" id="wiZ-Y0-8FW"/>
+                    </connections>
                 </tableView>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Etc-XL-Ohf">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <items>
                         <navigationItem title="Live Orders" id="yoM-ns-xhz">
-                            <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="Z4M-6t-4up"/>
+                            <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="Z4M-6t-4up">
+                                <connections>
+                                    <action selector="refreshLiveOrders:" destination="-1" id="LgZ-S6-tUW"/>
+                                </connections>
+                            </barButtonItem>
                         </navigationItem>
                     </items>
                 </navigationBar>

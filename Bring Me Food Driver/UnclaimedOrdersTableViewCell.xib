@@ -59,10 +59,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="deliveryTime" destination="nt8-71-sIL" id="Dsn-H1-5Bk"/>
-                <outlet property="drivingDistanceAndLabel" destination="OgM-mB-k5e" id="aFO-mk-CWb"/>
-                <outlet property="orderedForTime" destination="rEk-IV-lnn" id="MdB-U8-N67"/>
-                <outlet property="restaurantName" destination="F7y-It-c8r" id="0Jd-QP-UJR"/>
+                <outlet property="deliveryCost" destination="nt8-71-sIL" id="lrU-7b-d2N"/>
+                <outlet property="drivingDistance" destination="OgM-mB-k5e" id="VD1-kP-g0S"/>
+                <outlet property="orderedForTime" destination="rEk-IV-lnn" id="7xZ-RB-Lzw"/>
+                <outlet property="restaurantName" destination="F7y-It-c8r" id="0Ov-T4-Mib"/>
             </connections>
             <point key="canvasLocation" x="340" y="305"/>
         </tableViewCell>

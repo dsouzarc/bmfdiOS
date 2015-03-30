@@ -24,6 +24,10 @@
 
 @property (nonatomic, strong) NSArray *chosenItems;
 
-- (instancetype) initWithEverything:(NSString*)orderId ordererName:(NSString*)ordererName deliveryAddressString:(NSString*)deliveryAddressString deliveryAddress:(PFGeoPoint*)deliveryAddress orderStatus:(NSInteger)orderStatus timeToDeliverAt:(NSDate*)timeToDeliverAt estimatedDeliveryTime:(NSDate*)estimatedDeliveryTime chosenItems:(NSArray*)chosenItems;
+@property (nonatomic, strong) NSString *restaurantName;
+
+- (instancetype) initWithEverything:(NSString*)orderId ordererName:(NSString*)ordererName deliveryAddressString:(NSString*)deliveryAddressString deliveryAddress:(PFGeoPoint*)deliveryAddress orderStatus:(NSInteger)orderStatus timeToDeliverAt:(NSDate*)timeToDeliverAt estimatedDeliveryTime:(NSDate*)estimatedDeliveryTime chosenItems:(NSArray*)chosenItems restaurantName:(NSString*)restaurantName;
+
+- (instancetype) initUsingDictionary:(NSDictionary*)dictionary;
 
 @end

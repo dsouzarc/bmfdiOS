@@ -10,8 +10,11 @@
 
 @interface UnclaimedOrdersTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *restaurantName;
-@property (strong, nonatomic) IBOutlet UILabel *deliveryTime;
-@property (strong, nonatomic) IBOutlet UILabel *drivingDistanceAndLabel;
+@property (strong, nonatomic) IBOutlet UILabel *deliveryCost;
+
 @property (strong, nonatomic) IBOutlet UILabel *orderedForTime;
+
+@property (strong, nonatomic) IBOutlet UILabel *drivingDistance;
+
 
 @end
