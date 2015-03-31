@@ -59,7 +59,7 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     cell.restaurantName.text = order.restaurantName;
     
     cell.orderedForTime.text = [NSString stringWithFormat:@"Ordered for: %@", [self getNiceDate:order.timeToBeDeliveredAt]];
-    cell.deliveryCost.text = order.
+    cell.deliveryCost.text = [NSString stringWithFormat:@"Cost: %@", order.orderCost];
     
     if(!self.currentLocation) {
         cell.drivingDistance.text = order.deliveryAddressString;
@@ -143,8 +143,6 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
             
             [self.loadingAnimation hide];
             [self.liveOrdersTableView reloadData];
-            
-            NSLog(@"DONE %ld", (long)self.unclaimedOrdersArray.count);
             
             [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
                 [[PFUser currentUser] setObject:geoPoint forKey:@"currentLocation"];

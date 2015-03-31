@@ -70,7 +70,6 @@
                                                                 NSLog(@"DID NOT SAVE");
                                                             }
                                                             else {
-                                                                NSLog(@"SAVED");
                                                             }
                                                         }];
                                                         
