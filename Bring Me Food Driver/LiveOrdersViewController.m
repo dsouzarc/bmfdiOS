@@ -15,6 +15,7 @@
 @interface LiveOrdersViewController ()
 
 @property (strong, nonatomic) IBOutlet UITableView *liveOrdersTableView;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSMutableArray *unclaimedOrdersArray;
@@ -125,11 +126,27 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     else if (status == kCLAuthorizationStatusNotDetermined) {
         [self.locationManager requestAlwaysAuthorization];
     }
+    
+
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(updateLiveOrders) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl.tintColor = [UIColor colorWithRed:(254/255.0) green:(153/255.0) blue:(0/255.0) alpha:1];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Fetching Live Orders"];
+    
+    UITableViewController *tableViewController = [[UITableViewController alloc] init];
+    tableViewController.tableView = self.liveOrdersTableView;
+    tableViewController.refreshControl = self.refreshControl;
 }
+
 
 - (void) updateLiveOrders
 {
-    [self.loadingAnimation show];
+    
+    //Only display the loading animation if we are not swiping to refresh
+    if(!self.refreshControl.refreshing) {
+        [self.loadingAnimation show];
+    }
     
     [PFCloud callFunctionInBackground:@"getUnclaimedOrders" withParameters:nil block:^(NSArray *result, NSError *problem) {
         if(!problem) {
@@ -169,6 +186,28 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
             NSLog(problem.description);
         }
     }];
+    
+    if(self.refreshControl.refreshing) {
+        [self.refreshControl endRefreshing];
+    }
+}
+
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    //If there is at least 1 order
+    if(self.unclaimedOrdersArray && self.unclaimedOrdersArray.count > 0) {
+        return 1;
+    }
+    
+    //Otherwise, display no orders
+    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    messageLabel.text = @"No live orders";
+    messageLabel.textColor = [UIColor blackColor];
+    messageLabel.numberOfLines = 0;
+    messageLabel.textAlignment = NSTextAlignmentCenter;
+    self.liveOrdersTableView.backgroundView = messageLabel;
+    self.liveOrdersTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    return 0;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
