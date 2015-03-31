@@ -20,6 +20,8 @@
 @property (strong, nonatomic) NSMutableArray *unclaimedOrdersArray;
 @property (strong, nonatomic) PQFBouncingBalls *loadingAnimation;
 
+@property (strong, nonatomic) PFGeoPoint *currentLocation;
+
 - (IBAction)refreshLiveOrders:(id)sender;
 
 @end
@@ -57,8 +59,17 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     cell.restaurantName.text = order.restaurantName;
     
     cell.orderedForTime.text = [NSString stringWithFormat:@"Ordered for: %@", [self getNiceDate:order.timeToBeDeliveredAt]];
-    cell.drivingDistance.text = order.deliveryAddressString;
+    cell.deliveryCost.text = order.
     
+    if(!self.currentLocation) {
+        cell.drivingDistance.text = order.deliveryAddressString;
+    }
+    else {
+        double distance = [self.currentLocation distanceInMilesTo:order.deliveryAddress];
+        NSString *niceDistance = [NSString stringWithFormat:@"%.2f", distance];
+        
+        cell.drivingDistance.text = [NSString stringWithFormat:@"%@ miles from %@", niceDistance, order.deliveryAddressString];
+    }
     return cell;
 }
 
@@ -66,22 +77,6 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
 {
     NSLog(@"ERROR GETTING LOCATION: ");
 }
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    CLLocation* location = [locations lastObject];
-    NSDate* eventDate = location.timestamp;
-    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (abs(howRecent) < 15.0) {
-        // Update your marker on your map using location.coordinate.latitude
-        //and location.coordinate.longitude);
-    }
-}
-
 
 - (NSString*) getNiceDate:(NSDate*)date
 {
@@ -150,21 +145,31 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
             [self.liveOrdersTableView reloadData];
             
             NSLog(@"DONE %ld", (long)self.unclaimedOrdersArray.count);
+            
+            [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+                [[PFUser currentUser] setObject:geoPoint forKey:@"currentLocation"];
+                [[PFUser currentUser] saveInBackground];
+                self.currentLocation = geoPoint;
+                
+                for(int i = 0; i < self.unclaimedOrdersArray.count; i++) {
+                    NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+                    
+                    UnclaimedOrdersTableViewCell *cell = [self.liveOrdersTableView cellForRowAtIndexPath:path];
+                    Order *order = [self.unclaimedOrdersArray objectAtIndex:i];
+                    double distance = [geoPoint distanceInMilesTo:order.deliveryAddress];
+                    
+                    NSString *result = [NSString stringWithFormat:@"%.2f", distance];
+                    
+                    cell.drivingDistance.text = [NSString stringWithFormat:@"%@ miles away from %@", result, order.deliveryAddressString];
+                }
+                
+            }];
         }
         
         else {
             NSLog(@"Problem");
             NSLog(problem.description);
         }
-    }];
-    
-    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
-        
-        NSLog(@"User is currently at %f, %f", geoPoint.latitude, geoPoint.longitude);
-        //self.userLocation = geoPoint;
-        [[PFUser currentUser] setObject:geoPoint forKey:@"currentLocation"];
-        [[PFUser currentUser] saveInBackground];
-        
     }];
 }
 
