@@ -7,6 +7,7 @@
 //
 
 #import "ClaimOrderViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ClaimOrderViewController ()
 
@@ -38,18 +39,51 @@
     
     return self;
 }
+
+- (IBAction)claimOrderButton:(id)sender {
+    
+}
+
+- (void)setRoundedBorder:(float) radius borderWidth:(float)borderWidth color:(UIColor*)color
+{
+    CALayer * l = self.view.layer;
+    [l setMasksToBounds:YES];
+    [l setCornerRadius:radius];
+    [l setBorderWidth:borderWidth];
+    [l setBorderColor:[color CGColor]];
+}
+
 - (void)viewDidLoad
 {
-    self.view.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.6];
-    self.mainView.layer.cornerRadius = 5;
-    self.mainView.layer.shadowOpacity = 0.8;
-    self.mainView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    self.view.backgroundColor = [UIColor clearColor];
+    self.view.opaque = YES;
+    self.mainView.layer.cornerRadius=8.0f;
+    self.mainView.layer.masksToBounds=YES;
+    self.mainView.layer.borderColor=[[UIColor blueColor]CGColor];
+    self.mainView.layer.borderWidth= 2.0f;
     
     self.restaurantName.text = self.order.restaurantName;
     self.dropOffAddressString.text = self.order.deliveryAddressString;
+    self.dropOffTime.text = [self getNiceDate:self.order.timeToBeDeliveredAt];
+    self.orderCost.text = self.order.orderCost;
     
+    NSMutableString *distanceText = [[NSMutableString alloc] init];
+    [distanceText appendString:@"To Restaurant: "];
+    [distanceText appendString:[self getNiceDistance:self.myLocation secondPoint:self.order.restaurantGeoPoint]];
+    [distanceText appendString:@" To drop-off: "];
+    [distanceText appendString:[self getNiceDistance:self.order.restaurantGeoPoint secondPoint:self.order.deliveryAddress]];
+
+    self.distance.text = distanceText;
+    self.distance.adjustsFontSizeToFitWidth = YES;
+    
+    self.myDeliveryTimeDatePicker.date = [NSDate date];
     
     [super viewDidLoad];
+}
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self removeAnimate];
 }
 
 - (void) showAnimate
@@ -86,8 +120,31 @@
     });
 }
 
-- (IBAction)claimOrderButton:(id)sender {
+- (NSString*) getNiceDistance:(PFGeoPoint*)firstPoint secondPoint:(PFGeoPoint*)secondPoint
+{
+    double distance = [firstPoint distanceInMilesTo:secondPoint];
+    return [[NSString alloc] initWithFormat:@"%.2f", distance];
+}
+
+- (NSString*) getNiceDate:(NSDate*)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm"];
     
+    NSString *time = [dateFormatter stringFromDate:date];
+    
+    //If it is today, just say
+    BOOL isToday = [[NSCalendar currentCalendar] isDateInToday:date];
+    
+    
+    if(isToday) {
+        return [NSString stringWithFormat:@"Today @: %@", time];
+    }
+    else {
+        [dateFormatter setDateFormat:@"dd/MM"];
+        
+        return [NSString stringWithFormat:@"%@ on %@", time, [dateFormatter stringFromDate:date]];
+    }
 }
 
 @end

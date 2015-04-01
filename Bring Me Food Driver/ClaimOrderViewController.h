@@ -10,8 +10,10 @@
 #import "Order.h"
 #import <Parse/Parse.h>
 
-@interface ClaimOrderViewController : ViewController
+@interface ClaimOrderViewController : ViewController <UITextFieldDelegate>
 
 - (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil order:(Order*)order myLocation:(PFGeoPoint*)myLocation;
+
+- (void) showInView:(UIView*)view shouldAnimate:(BOOL)shouldAnimate;
 
 @end

@@ -9,6 +9,7 @@
 #import "LiveOrdersViewController.h"
 #import "UnclaimedOrdersTableViewCell.h"
 #import <Parse/Parse.h>
+#import "ClaimOrderViewController.h"
 #import "PQFBouncingBalls.h"
 #import "Order.h"
 
@@ -20,6 +21,7 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSMutableArray *unclaimedOrdersArray;
 @property (strong, nonatomic) PQFBouncingBalls *loadingAnimation;
+@property (strong, nonatomic) ClaimOrderViewController *claimOrderViewController;
 
 @property (strong, nonatomic) PFGeoPoint *currentLocation;
 
@@ -135,6 +137,16 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     UITableViewController *tableViewController = [[UITableViewController alloc] init];
     tableViewController.tableView = self.liveOrdersTableView;
     tableViewController.refreshControl = self.refreshControl;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Order *order = [self.unclaimedOrdersArray objectAtIndex:indexPath.row];
+    
+    self.claimOrderViewController = [[ClaimOrderViewController alloc] initWithNibName:@"ClaimOrderViewController" bundle:[NSBundle mainBundle] order:order myLocation:self.currentLocation];
+    
+    [self.claimOrderViewController showInView:self.view shouldAnimate:YES];
+    
 }
 
 
