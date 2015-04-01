@@ -27,7 +27,9 @@
 @property (nonatomic, strong) NSString *restaurantName;
 @property (nonatomic, strong) NSString *orderCost;
 
-- (instancetype) initWithEverything:(NSString*)orderId ordererName:(NSString*)ordererName deliveryAddressString:(NSString*)deliveryAddressString deliveryAddress:(PFGeoPoint*)deliveryAddress orderStatus:(NSInteger)orderStatus timeToDeliverAt:(NSDate*)timeToDeliverAt estimatedDeliveryTime:(NSDate*)estimatedDeliveryTime chosenItems:(NSArray*)chosenItems restaurantName:(NSString*)restaurantName orderCost:(NSString*)orderCost;
+@property (nonatomic, strong) PFGeoPoint *restaurantGeoPoint;
+
+- (instancetype) initWithEverything:(NSString*)orderId ordererName:(NSString*)ordererName deliveryAddressString:(NSString*)deliveryAddressString deliveryAddress:(PFGeoPoint*)deliveryAddress orderStatus:(NSInteger)orderStatus timeToDeliverAt:(NSDate*)timeToDeliverAt estimatedDeliveryTime:(NSDate*)estimatedDeliveryTime chosenItems:(NSArray*)chosenItems restaurantName:(NSString*)restaurantName orderCost:(NSString*)orderCost restaurantGeo:(PFGeoPoint*)restaurantGeo;
 
 - (instancetype) initUsingDictionary:(NSDictionary*)dictionary;
 

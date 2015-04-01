@@ -66,10 +66,10 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
         cell.drivingDistance.text = order.deliveryAddressString;
     }
     else {
-        double distance = [self.currentLocation distanceInMilesTo:order.deliveryAddress];
+        double distance = [self.currentLocation distanceInMilesTo:order.restaurantGeoPoint] + [order.restaurantGeoPoint distanceInMilesTo:order.deliveryAddress];
         NSString *niceDistance = [NSString stringWithFormat:@"%.2f", distance];
         
-        cell.drivingDistance.text = [NSString stringWithFormat:@"%@ miles from %@", niceDistance, order.deliveryAddressString];
+        cell.drivingDistance.text = [NSString stringWithFormat:@"%@ Total distance to %@", niceDistance, order.deliveryAddressString];
     }
     return cell;
 }
@@ -127,8 +127,6 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
         [self.locationManager requestAlwaysAuthorization];
     }
     
-
-    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(updateLiveOrders) forControlEvents:UIControlEventValueChanged];
     self.refreshControl.tintColor = [UIColor colorWithRed:(254/255.0) green:(153/255.0) blue:(0/255.0) alpha:1];
@@ -142,7 +140,6 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
 
 - (void) updateLiveOrders
 {
-    
     //Only display the loading animation if we are not swiping to refresh
     if(!self.refreshControl.refreshing) {
         [self.loadingAnimation show];
@@ -171,11 +168,10 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
                     
                     UnclaimedOrdersTableViewCell *cell = [self.liveOrdersTableView cellForRowAtIndexPath:path];
                     Order *order = [self.unclaimedOrdersArray objectAtIndex:i];
-                    double distance = [geoPoint distanceInMilesTo:order.deliveryAddress];
+                    double distance = [self.currentLocation distanceInMilesTo:order.restaurantGeoPoint] + [order.restaurantGeoPoint distanceInMilesTo:order.deliveryAddress];
+                    NSString *niceDistance = [NSString stringWithFormat:@"%.2f", distance];
                     
-                    NSString *result = [NSString stringWithFormat:@"%.2f", distance];
-                    
-                    cell.drivingDistance.text = [NSString stringWithFormat:@"%@ miles away from %@", result, order.deliveryAddressString];
+                    cell.drivingDistance.text = [NSString stringWithFormat:@"%@ Total distance to %@", niceDistance, order.deliveryAddressString];
                 }
                 
             }];
