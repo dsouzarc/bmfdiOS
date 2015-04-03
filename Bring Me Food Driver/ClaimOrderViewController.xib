@@ -75,7 +75,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="claimOrderButton:" destination="-1" eventType="touchUpInside" id="Gzg-TC-CWp"/>
+                                        <action selector="claimOrderAction:" destination="-1" eventType="touchUpInside" id="T7O-Za-RxM"/>
                                     </connections>
                                 </button>
                             </subviews>

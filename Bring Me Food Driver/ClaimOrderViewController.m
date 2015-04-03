@@ -8,6 +8,7 @@
 
 #import "ClaimOrderViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "PQFBouncingBalls.h"
 
 @interface ClaimOrderViewController ()
 
@@ -21,8 +22,9 @@
 
 @property (strong, nonatomic) Order *order;
 @property (strong, nonatomic) PFGeoPoint *myLocation;
+@property (strong, nonatomic) PQFBouncingBalls *bouncingballs;
 
-- (IBAction)claimOrderButton:(id)sender;
+- (IBAction)claimOrderAction:(id)sender;
 
 @end
 
@@ -40,8 +42,13 @@
     return self;
 }
 
-- (IBAction)claimOrderButton:(id)sender {
-    
+- (void) showAlert:(NSString*)alertTitle alertMessage:(NSString*)alertMessage buttonName:(NSString*)buttonName {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:alertTitle
+                                                        message:alertMessage
+                                                       delegate:nil
+                                              cancelButtonTitle:buttonName
+                                              otherButtonTitles:nil, nil];
+    [alertView show];
 }
 
 - (void)setRoundedBorder:(float) radius borderWidth:(float)borderWidth color:(UIColor*)color
@@ -61,6 +68,8 @@
     self.mainView.layer.masksToBounds=YES;
     self.mainView.layer.borderColor=[[UIColor blueColor]CGColor];
     self.mainView.layer.borderWidth= 2.0f;
+    self.bouncingballs = [[PQFBouncingBalls alloc] initLoaderOnView:self.view];
+    self.bouncingballs.loaderColor = [UIColor blueColor];
     
     self.restaurantName.text = self.order.restaurantName;
     self.dropOffAddressString.text = self.order.deliveryAddressString;
@@ -147,4 +156,33 @@
     }
 }
 
+- (IBAction)claimOrderAction:(id)sender {
+    [self.bouncingballs show];
+    
+    NSDictionary *parameters = @{@"estimatedDeliveryTime": self.myDeliveryTimeDatePicker.date,
+                                 @"orderId": self.order.orderId};
+    
+    [PFCloud callFunctionInBackground:@"claimOrder" withParameters:parameters block:^(NSString *response, NSError *error) {
+        [self.bouncingballs hide];
+        
+        if(!error) {
+            NSLog(@"RESULT: %@", response);
+            
+            if([response isEqualToString:@"CLAIMED"]) {
+                [self showAlert:@"Successfully Claimed" alertMessage:@"Your Order was successfully claimed" buttonName:@"Okay"];
+            }
+            else if([response isEqualToString:@"ALREADY CLAIMED"]) {
+                [self showAlert:@"Already Claimed" alertMessage:@"Sorry, this Order was already claimed" buttonName:@"Okay"];
+            }
+            else {
+                [self showAlert:@"Error" alertMessage:@"Sorry, something went wrong while trying to claim your order" buttonName:@"Try again"];
+            }
+        }
+        else {
+            [self showAlert:@"Error" alertMessage:@"Sorry, something went wrong while trying to claim your order" buttonName:@"Try again"];
+        }
+        
+        [self removeAnimate];
+    }];
+}
 @end

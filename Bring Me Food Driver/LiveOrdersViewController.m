@@ -104,14 +104,9 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //LOCATION STUFF
     [self.locationManager requestAlwaysAuthorization];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    [self.liveOrdersTableView registerNib:[UINib nibWithNibName:@"UnclaimedOrdersTableViewCell"
-                                                         bundle:[NSBundle mainBundle]]
-                   forCellReuseIdentifier:cellIdentifier];
-    [self updateLiveOrders];
-    
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
     if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
         NSString *title;
@@ -129,6 +124,14 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
         [self.locationManager requestAlwaysAuthorization];
     }
     
+    //LIVE ORDERS VALUES
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.liveOrdersTableView registerNib:[UINib nibWithNibName:@"UnclaimedOrdersTableViewCell"
+                                                         bundle:[NSBundle mainBundle]]
+                   forCellReuseIdentifier:cellIdentifier];
+    [self updateLiveOrders];
+    
+    //SWIPE TO REFRESH
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(updateLiveOrders) forControlEvents:UIControlEventValueChanged];
     self.refreshControl.tintColor = [UIColor colorWithRed:(254/255.0) green:(153/255.0) blue:(0/255.0) alpha:1];
@@ -147,6 +150,11 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     
     [self.claimOrderViewController showInView:self.view shouldAnimate:YES];
     
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [self updateLiveOrders];
 }
 
 
@@ -208,13 +216,15 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     }
     
     //Otherwise, display no orders
-    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-    messageLabel.text = @"No live orders";
-    messageLabel.textColor = [UIColor blackColor];
-    messageLabel.numberOfLines = 0;
-    messageLabel.textAlignment = NSTextAlignmentCenter;
-    self.liveOrdersTableView.backgroundView = messageLabel;
-    self.liveOrdersTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    else {
+        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        messageLabel.text = @"No live orders";
+        messageLabel.textColor = [UIColor blackColor];
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = NSTextAlignmentCenter;
+        self.liveOrdersTableView.backgroundView = messageLabel;
+        self.liveOrdersTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
     return 0;
 }
 
