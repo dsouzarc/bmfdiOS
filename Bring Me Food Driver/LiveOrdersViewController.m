@@ -109,8 +109,7 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     [self.locationManager requestAlwaysAuthorization];
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
     if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
-        NSString *title;
-        title = (status == kCLAuthorizationStatusDenied) ? @"Location services are off" : @"Background location is not enabled";
+        NSString *title = (status == kCLAuthorizationStatusDenied) ? @"Location services are off" : @"Background location is not enabled";
         NSString *message = @"To use background location you must turn on 'Always' in the Location Services Settings";
         
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
@@ -156,7 +155,6 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
 {
     [self updateLiveOrders];
 }
-
 
 - (void) updateLiveOrders
 {

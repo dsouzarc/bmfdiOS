@@ -45,8 +45,6 @@
             orderCost:dictionary[@"orderCost"]
             restaurantGeo:dictionary[@"restaurantLocation"]];
     
-    NSLog(@"HERE: %@", ((PFGeoPoint*)dictionary[@"restaurantLocation"]).description);
-    
     return self;
 }
 
