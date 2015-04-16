@@ -11,7 +11,6 @@
 #import <Parse/Parse.h>
 #import "ClaimOrderViewController.h"
 #import "PQFBouncingBalls.h"
-#import "Order.h"
 
 @interface LiveOrdersViewController ()
 
@@ -57,7 +56,7 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
         cell = [[UnclaimedOrdersTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    Order *order = [self.unclaimedOrdersArray objectAtIndex:indexPath.row];
+    UnclaimedOrder *order = [self.unclaimedOrdersArray objectAtIndex:indexPath.row];
     
     cell.restaurantName.text = order.restaurantName;
     
@@ -68,7 +67,8 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
         cell.drivingDistance.text = order.deliveryAddressString;
     }
     else {
-        double distance = [self.currentLocation distanceInMilesTo:order.restaurantGeoPoint] + [order.restaurantGeoPoint distanceInMilesTo:order.deliveryAddress];
+        double distance = [self.currentLocation distanceInMilesTo:order.restaurantGeoPoint] +
+        [order.restaurantGeoPoint distanceInMilesTo:order.deliveryAddress];
         NSString *niceDistance = [NSString stringWithFormat:@"%.2f", distance];
         
         cell.drivingDistance.text = [NSString stringWithFormat:@"%@ Total distance to %@", niceDistance, order.deliveryAddressString];
@@ -147,7 +147,7 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Order *order = [self.unclaimedOrdersArray objectAtIndex:indexPath.row];
+    UnclaimedOrder *order = [self.unclaimedOrdersArray objectAtIndex:indexPath.row];
     
     self.claimOrderViewController = [[ClaimOrderViewController alloc] initWithNibName:@"ClaimOrderViewController" bundle:[NSBundle mainBundle] order:order myLocation:self.currentLocation];
     
@@ -173,7 +173,7 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
             [self.unclaimedOrdersArray removeAllObjects];
             
             for(NSDictionary *unclaimed in result) {
-                Order *order = [[Order alloc] initUsingDictionary:unclaimed];
+                UnclaimedOrder *order = [[UnclaimedOrder alloc] initWithEverything:unclaimed];
                 [self.unclaimedOrdersArray addObject:order];
             }
             
@@ -189,7 +189,8 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
                     NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
                     
                     UnclaimedOrdersTableViewCell *cell = [self.liveOrdersTableView cellForRowAtIndexPath:path];
-                    Order *order = [self.unclaimedOrdersArray objectAtIndex:i];
+                    UnclaimedOrder *order = [self.unclaimedOrdersArray objectAtIndex:i];
+                    
                     double distance = [self.currentLocation distanceInMilesTo:order.restaurantGeoPoint] + [order.restaurantGeoPoint distanceInMilesTo:order.deliveryAddress];
                     NSString *niceDistance = [NSString stringWithFormat:@"%.2f", distance];
                     

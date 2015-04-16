@@ -20,7 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *distance;
 @property (strong, nonatomic) IBOutlet UIDatePicker *myDeliveryTimeDatePicker;
 
-@property (strong, nonatomic) Order *order;
+@property (strong, nonatomic) UnclaimedOrder *order;
 @property (strong, nonatomic) PFGeoPoint *myLocation;
 @property (strong, nonatomic) PQFBouncingBalls *bouncingballs;
 
@@ -30,7 +30,7 @@
 
 @implementation ClaimOrderViewController
 
-- (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil order:(Order *)order myLocation:(PFGeoPoint *)myLocation
+- (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil order:(UnclaimedOrder *)order myLocation:(PFGeoPoint *)myLocation
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
@@ -77,10 +77,14 @@
     self.orderCost.text = self.order.orderCost;
     
     NSMutableString *distanceText = [[NSMutableString alloc] init];
+    
     [distanceText appendString:@"To Restaurant: "];
-    [distanceText appendString:[self getNiceDistance:self.myLocation secondPoint:self.order.restaurantGeoPoint]];
+    [distanceText appendString:[self getNiceDistance:self.myLocation
+                                         secondPoint:self.order.restaurantGeoPoint]];
+    
     [distanceText appendString:@" To drop-off: "];
-    [distanceText appendString:[self getNiceDistance:self.order.restaurantGeoPoint secondPoint:self.order.deliveryAddress]];
+    [distanceText appendString:[self getNiceDistance:self.order.restaurantGeoPoint
+                                         secondPoint:self.order.deliveryAddress]];
 
     self.distance.text = distanceText;
     self.distance.adjustsFontSizeToFitWidth = YES;
@@ -160,7 +164,7 @@
     [self.bouncingballs show];
     
     NSDictionary *parameters = @{@"estimatedDeliveryTime": self.myDeliveryTimeDatePicker.date,
-                                 @"orderId": self.order.orderId};
+                                 @"orderId": self.order.orderID};
     
     [PFCloud callFunctionInBackground:@"claimOrder" withParameters:parameters block:^(NSString *response, NSError *error) {
         [self.bouncingballs hide];

@@ -7,12 +7,13 @@
 //
 
 #import "ViewController.h"
-#import "Order.h"
 #import <Parse/Parse.h>
+
+#import "UnclaimedOrder.h"
 
 @interface ClaimOrderViewController : ViewController <UITextFieldDelegate>
 
-- (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil order:(Order*)order myLocation:(PFGeoPoint*)myLocation;
+- (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil order:(UnclaimedOrder*)order myLocation:(PFGeoPoint*)myLocation;
 
 - (void) showInView:(UIView*)view shouldAnimate:(BOOL)shouldAnimate;
 

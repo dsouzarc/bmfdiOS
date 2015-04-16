@@ -50,6 +50,7 @@
 		94B7D0491AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */; };
 		94D4F3D01ADF241700E13F0D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4F3CE1ADF241700E13F0D /* MainViewController.m */; };
 		94D4F3D11ADF241700E13F0D /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D4F3CF1ADF241700E13F0D /* MainViewController.xib */; };
+		94D4F3D41ADF3EC000E13F0D /* UnclaimedOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4F3D31ADF3EC000E13F0D /* UnclaimedOrder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,8 @@
 		94D4F3CD1ADF241700E13F0D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		94D4F3CE1ADF241700E13F0D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		94D4F3CF1ADF241700E13F0D /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		94D4F3D21ADF3EC000E13F0D /* UnclaimedOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnclaimedOrder.h; sourceTree = "<group>"; };
+		94D4F3D31ADF3EC000E13F0D /* UnclaimedOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnclaimedOrder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +227,8 @@
 				94B7CFCF1AC49E8300C313CB /* Supporting Files */,
 				941197541AC9A7700002FDEE /* Order.h */,
 				941197551AC9A7700002FDEE /* Order.m */,
+				94D4F3D21ADF3EC000E13F0D /* UnclaimedOrder.h */,
+				94D4F3D31ADF3EC000E13F0D /* UnclaimedOrder.m */,
 			);
 			path = "Bring Me Food Driver";
 			sourceTree = "<group>";
@@ -451,6 +456,7 @@
 				94B7D02D1AC4A00600C313CB /* UIColor+CIELAB.m in Sources */,
 				941197521AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m in Sources */,
 				947BA37A1ACB4AEE0005D763 /* ClaimOrderViewController.m in Sources */,
+				94D4F3D41ADF3EC000E13F0D /* UnclaimedOrder.m in Sources */,
 				94B7D02A1AC4A00600C313CB /* ChameleonStatusBar.m in Sources */,
 				94B7D02F1AC4A00600C313CB /* PQFBarsInCircle.m in Sources */,
 				94B7D02E1AC4A00600C313CB /* UIViewController+Chameleon.m in Sources */,
