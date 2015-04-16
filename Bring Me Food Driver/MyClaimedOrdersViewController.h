@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
-@interface MyClaimedOrdersViewController : UIViewController
+@interface MyClaimedOrdersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 
 

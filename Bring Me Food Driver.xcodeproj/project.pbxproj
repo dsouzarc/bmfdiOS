@@ -180,6 +180,19 @@
 			path = CustomIOSAlertView;
 			sourceTree = "<group>";
 		};
+		9408CBBE1AE080E5000AC589 /* Live and Order Claim */ = {
+			isa = PBXGroup;
+			children = (
+				947BA3771ACB4AEE0005D763 /* ClaimOrderViewController.h */,
+				947BA3781ACB4AEE0005D763 /* ClaimOrderViewController.m */,
+				947BA3791ACB4AEE0005D763 /* ClaimOrderViewController.xib */,
+				94B7D0401AC4B3D900C313CB /* LiveOrdersViewController.h */,
+				94B7D0411AC4B3D900C313CB /* LiveOrdersViewController.m */,
+				94B7D0421AC4B3D900C313CB /* LiveOrdersViewController.xib */,
+			);
+			name = "Live and Order Claim";
+			sourceTree = "<group>";
+		};
 		947BA3761AC9E79F0005D763 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,18 +226,13 @@
 			isa = PBXGroup;
 			children = (
 				947BA3761AC9E79F0005D763 /* TableViewCells */,
+				94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */,
 				94B7D0451AC4B3ED00C313CB /* MyClaimedOrdersViewController.h */,
 				94B7D0461AC4B3ED00C313CB /* MyClaimedOrdersViewController.m */,
 				94D4F3CD1ADF241700E13F0D /* MainViewController.h */,
 				94D4F3CE1ADF241700E13F0D /* MainViewController.m */,
 				94D4F3CF1ADF241700E13F0D /* MainViewController.xib */,
-				94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */,
-				947BA3771ACB4AEE0005D763 /* ClaimOrderViewController.h */,
-				947BA3781ACB4AEE0005D763 /* ClaimOrderViewController.m */,
-				947BA3791ACB4AEE0005D763 /* ClaimOrderViewController.xib */,
-				94B7D0401AC4B3D900C313CB /* LiveOrdersViewController.h */,
-				94B7D0411AC4B3D900C313CB /* LiveOrdersViewController.m */,
-				94B7D0421AC4B3D900C313CB /* LiveOrdersViewController.xib */,
+				9408CBBE1AE080E5000AC589 /* Live and Order Claim */,
 				94B7D0361AC4A21F00C313CB /* LogInViewController.h */,
 				94B7D0371AC4A21F00C313CB /* LogInViewController.m */,
 				9408CBBA1AE06A73000AC589 /* CustomIOSAlertView */,
