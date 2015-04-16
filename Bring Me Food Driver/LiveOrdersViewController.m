@@ -160,6 +160,7 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     self.claimOrderViewController = [[ClaimOrderViewController alloc] initWithNibName:@"ClaimOrderViewController" bundle:[NSBundle mainBundle] order:order myLocation:self.currentLocation];
     
     self.modalPresentationStyle = UIModalPresentationFormSheet;
+    //[self.navigationController pushViewController:self.claimOrderViewController animated:YES];
     [self presentViewController:self.claimOrderViewController animated:YES completion:nil];
 }
 
@@ -182,6 +183,7 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
             
             for(NSDictionary *unclaimed in result) {
                 UnclaimedOrder *order = [[UnclaimedOrder alloc] initWithEverything:unclaimed];
+                NSLog(@"UNCLAIMED ID: %@", unclaimed[@"orderID"]);
                 [self.unclaimedOrdersArray addObject:order];
             }
             

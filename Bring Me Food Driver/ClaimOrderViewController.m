@@ -117,7 +117,7 @@
 
 - (IBAction)claimOrderAction:(id)sender {
     [self.bouncingballs show];
-    
+    NSLog(@"ORDER ID: %@", self.order.orderID);
     NSDictionary *parameters = @{@"estimatedDeliveryTime": self.myDeliveryTimeDatePicker.date,
                                  @"orderId": self.order.orderID};
     
@@ -140,12 +140,13 @@
         else {
             [self showAlert:@"Error" alertMessage:@"Sorry, something went wrong while trying to claim your order" buttonName:@"Try again"];
         }
-        [self.navigationController popViewControllerAnimated:YES];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
     }];
 }
 
 - (IBAction)cancelClaimingOrder:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
