@@ -52,8 +52,6 @@
     [alertView show];
 }
 
-
-
 - (void)viewDidLoad
 {
     self.bouncingballs = [[PQFBouncingBalls alloc] initLoaderOnView:self.view];
@@ -117,11 +115,15 @@
 
 - (IBAction)claimOrderAction:(id)sender {
     [self.bouncingballs show];
-    NSLog(@"ORDER ID: %@", self.order.orderID);
     NSDictionary *parameters = @{@"estimatedDeliveryTime": self.myDeliveryTimeDatePicker.date,
-                                 @"orderId": self.order.orderID};
+                                 @"orderId": self.order.orderID,
+                                 @"driverLocation": self.myLocation};
     
     [PFCloud callFunctionInBackground:@"claimOrder" withParameters:parameters block:^(NSString *response, NSError *error) {
+        
+        [PFCloud callFunction:@"setDriverLocation"
+               withParameters:@{@"currentLocation": self.myLocation}];
+        
         [self.bouncingballs hide];
         
         if(!error) {
@@ -131,14 +133,20 @@
                 [self showAlert:@"Successfully Claimed" alertMessage:@"Your Order was successfully claimed" buttonName:@"Okay"];
             }
             else if([response isEqualToString:@"ALREADY CLAIMED"]) {
-                [self showAlert:@"Already Claimed" alertMessage:@"Sorry, this Order was already claimed" buttonName:@"Okay"];
+                [self showAlert:@"Already Claimed"
+                   alertMessage:@"Sorry, this Order was already claimed"
+                     buttonName:@"Okay"];
             }
             else {
-                [self showAlert:@"Error" alertMessage:@"Sorry, something went wrong while trying to claim your order" buttonName:@"Try again"];
+                [self showAlert:@"Error"
+                   alertMessage:@"Sorry, something went wrong while trying to claim your order"
+                     buttonName:@"Try again"];
             }
         }
         else {
-            [self showAlert:@"Error" alertMessage:@"Sorry, something went wrong while trying to claim your order" buttonName:@"Try again"];
+            [self showAlert:@"Error"
+               alertMessage:@"Sorry, something went wrong while trying to claim your order"
+                 buttonName:@"Try again"];
         }
         
         [self dismissViewControllerAnimated:YES completion:nil];

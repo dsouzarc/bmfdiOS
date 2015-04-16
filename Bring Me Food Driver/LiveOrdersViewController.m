@@ -183,7 +183,6 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
             
             for(NSDictionary *unclaimed in result) {
                 UnclaimedOrder *order = [[UnclaimedOrder alloc] initWithEverything:unclaimed];
-                NSLog(@"UNCLAIMED ID: %@", unclaimed[@"orderID"]);
                 [self.unclaimedOrdersArray addObject:order];
             }
             
