@@ -20,6 +20,7 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSMutableArray *unclaimedOrdersArray;
 @property (strong, nonatomic) PQFBouncingBalls *loadingAnimation;
+
 @property (strong, nonatomic) ClaimOrderViewController *claimOrderViewController;
 
 @property (strong, nonatomic) PFGeoPoint *currentLocation;
@@ -155,11 +156,11 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UnclaimedOrder *order = [self.unclaimedOrdersArray objectAtIndex:indexPath.row];
-    
+
     self.claimOrderViewController = [[ClaimOrderViewController alloc] initWithNibName:@"ClaimOrderViewController" bundle:[NSBundle mainBundle] order:order myLocation:self.currentLocation];
     
-    [self.claimOrderViewController showInView:self.view shouldAnimate:YES];
-    
+    self.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:self.claimOrderViewController animated:YES completion:nil];
 }
 
 - (void) viewDidAppear:(BOOL)animated

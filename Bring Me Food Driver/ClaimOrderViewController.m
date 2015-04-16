@@ -25,6 +25,7 @@
 @property (strong, nonatomic) PQFBouncingBalls *bouncingballs;
 
 - (IBAction)claimOrderAction:(id)sender;
+- (IBAction)cancelClaimingOrder:(id)sender;
 
 @end
 
@@ -51,30 +52,20 @@
     [alertView show];
 }
 
-- (void)setRoundedBorder:(float) radius borderWidth:(float)borderWidth color:(UIColor*)color
-{
-    CALayer * l = self.view.layer;
-    [l setMasksToBounds:YES];
-    [l setCornerRadius:radius];
-    [l setBorderWidth:borderWidth];
-    [l setBorderColor:[color CGColor]];
-}
+
 
 - (void)viewDidLoad
 {
-    self.view.backgroundColor = [UIColor clearColor];
-    self.view.opaque = YES;
-    self.mainView.layer.cornerRadius=8.0f;
-    self.mainView.layer.masksToBounds=YES;
-    self.mainView.layer.borderColor=[[UIColor blueColor]CGColor];
-    self.mainView.layer.borderWidth= 2.0f;
     self.bouncingballs = [[PQFBouncingBalls alloc] initLoaderOnView:self.view];
     self.bouncingballs.loaderColor = [UIColor blueColor];
     
-    self.restaurantName.text = self.order.restaurantName;
-    self.dropOffAddressString.text = self.order.deliveryAddressString;
-    self.dropOffTime.text = [self getNiceDate:self.order.timeToBeDeliveredAt];
-    self.orderCost.text = self.order.orderCost;
+    self.restaurantName.text = [NSString stringWithFormat:@"Restaurant: %@", self.order.restaurantName];
+    
+    self.dropOffAddressString.text = [NSString stringWithFormat:@"Dropoff Loc: %@",self.order.deliveryAddressString];
+    
+    self.dropOffTime.text = [NSString stringWithFormat:@"Dropoff Time: %@",[self getNiceDate:self.order.timeToBeDeliveredAt]];
+    
+    self.orderCost.text = [NSString stringWithFormat:@"Order Cost: %@", self.order.orderCost];
     
     NSMutableString *distanceText = [[NSMutableString alloc] init];
     
@@ -91,46 +82,10 @@
     
     self.myDeliveryTimeDatePicker.date = [NSDate date];
     
-    [super viewDidLoad];
-}
-
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self removeAnimate];
-}
-
-- (void) showAnimate
-{
-    self.view.transform = CGAffineTransformMakeScale(1.3, 1.3);
-    self.view.alpha = 0;
+    self.dropOffAddressString.adjustsFontSizeToFitWidth = YES;
+    self.distance.adjustsFontSizeToFitWidth = YES;
     
-    [UIView animateWithDuration:0.25 animations:^(void) {
-        self.view.alpha = 1;
-        self.view.transform = CGAffineTransformMakeScale(1, 1);
-    }];
-}
-
-- (void) removeAnimate
-{
-    [UIView animateWithDuration:0.25 animations:^(void) {
-        self.view.transform = CGAffineTransformMakeScale(1.3, 1.3);
-        self.view.alpha = 0;
-    } completion:^(BOOL finished) {
-        if(finished) {
-            [self.view removeFromSuperview];
-        }
-    }];
-}
-
-- (void) showInView:(UIView *)view shouldAnimate:(BOOL)shouldAnimate
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [view addSubview:self.view];
-        
-        if(shouldAnimate) {
-            [self showAnimate];
-        }
-    });
+    [super viewDidLoad];
 }
 
 - (NSString*) getNiceDistance:(PFGeoPoint*)firstPoint secondPoint:(PFGeoPoint*)secondPoint
@@ -185,8 +140,12 @@
         else {
             [self showAlert:@"Error" alertMessage:@"Sorry, something went wrong while trying to claim your order" buttonName:@"Try again"];
         }
-        
-        [self removeAnimate];
+        [self.navigationController popViewControllerAnimated:YES];
     }];
 }
+
+- (IBAction)cancelClaimingOrder:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

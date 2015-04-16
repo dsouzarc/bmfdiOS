@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9408CBBD1AE06A73000AC589 /* CustomIOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9408CBBC1AE06A73000AC589 /* CustomIOSAlertView.m */; };
 		941197521AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 941197501AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m */; };
 		941197531AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 941197511AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.xib */; };
 		941197561AC9A7700002FDEE /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 941197551AC9A7700002FDEE /* Order.m */; };
@@ -64,6 +65,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9408CBBB1AE06A73000AC589 /* CustomIOSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOSAlertView.h; sourceTree = "<group>"; };
+		9408CBBC1AE06A73000AC589 /* CustomIOSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOSAlertView.m; sourceTree = "<group>"; };
 		9411974F1AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnclaimedOrdersTableViewCell.h; sourceTree = "<group>"; };
 		941197501AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnclaimedOrdersTableViewCell.m; sourceTree = "<group>"; };
 		941197511AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnclaimedOrdersTableViewCell.xib; sourceTree = "<group>"; };
@@ -168,6 +171,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9408CBBA1AE06A73000AC589 /* CustomIOSAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				9408CBBB1AE06A73000AC589 /* CustomIOSAlertView.h */,
+				9408CBBC1AE06A73000AC589 /* CustomIOSAlertView.m */,
+			);
+			path = CustomIOSAlertView;
+			sourceTree = "<group>";
+		};
 		947BA3761AC9E79F0005D763 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +227,7 @@
 				94B7D0421AC4B3D900C313CB /* LiveOrdersViewController.xib */,
 				94B7D0361AC4A21F00C313CB /* LogInViewController.h */,
 				94B7D0371AC4A21F00C313CB /* LogInViewController.m */,
+				9408CBBA1AE06A73000AC589 /* CustomIOSAlertView */,
 				94B7D0381AC4A21F00C313CB /* LogInViewController.xib */,
 				94B7CFD31AC49E8300C313CB /* AppDelegate.h */,
 				94B7CFD41AC49E8300C313CB /* AppDelegate.m */,
@@ -452,6 +465,7 @@
 				94B7D02C1AC4A00600C313CB /* UIColor+Chameleon.m in Sources */,
 				94B7D0311AC4A00600C313CB /* PQFCirclesInTriangle.m in Sources */,
 				94D4F3D01ADF241700E13F0D /* MainViewController.m in Sources */,
+				9408CBBD1AE06A73000AC589 /* CustomIOSAlertView.m in Sources */,
 				94B7D0431AC4B3D900C313CB /* LiveOrdersViewController.m in Sources */,
 				94B7D02D1AC4A00600C313CB /* UIColor+CIELAB.m in Sources */,
 				941197521AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m in Sources */,
