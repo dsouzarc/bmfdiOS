@@ -62,17 +62,24 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     
     cell.orderedForTime.text = [NSString stringWithFormat:@"Ordered for: %@", [self getNiceDate:order.timeToBeDeliveredAt]];
     cell.deliveryCost.text = [NSString stringWithFormat:@"Cost: %@", order.orderCost];
-    
+    cell.deliveryAddress.text = [NSString stringWithFormat:@"Delivery Address: %@", order.deliveryAddressString];
+
     if(!self.currentLocation) {
-        cell.drivingDistance.text = order.deliveryAddressString;
+        cell.drivingDistance.text = @"Calculating the total driving distance...";
     }
     else {
         double distance = [self.currentLocation distanceInMilesTo:order.restaurantGeoPoint] +
         [order.restaurantGeoPoint distanceInMilesTo:order.deliveryAddress];
         NSString *niceDistance = [NSString stringWithFormat:@"%.2f", distance];
         
-        cell.drivingDistance.text = [NSString stringWithFormat:@"%@ Total distance to %@", niceDistance, order.deliveryAddressString];
+        cell.drivingDistance.text = [NSString stringWithFormat:@"Approximate total driving distance %@", niceDistance];
     }
+    
+    cell.restaurantName.adjustsFontSizeToFitWidth = YES;
+    cell.orderedForTime.adjustsFontSizeToFitWidth = YES;
+    cell.deliveryAddress.adjustsFontSizeToFitWidth = YES;
+    cell.drivingDistance.adjustsFontSizeToFitWidth = YES;
+    
     return cell;
 }
 
@@ -97,7 +104,7 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     
     
     if(isToday) {
-        return [NSString stringWithFormat:@"Today @: %@", time];
+        return [NSString stringWithFormat:@"Today @ %@", time];
     }
     else {
         [dateFormatter setDateFormat:@"dd/MM"];
@@ -194,7 +201,7 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
                     double distance = [self.currentLocation distanceInMilesTo:order.restaurantGeoPoint] + [order.restaurantGeoPoint distanceInMilesTo:order.deliveryAddress];
                     NSString *niceDistance = [NSString stringWithFormat:@"%.2f", distance];
                     
-                    cell.drivingDistance.text = [NSString stringWithFormat:@"%@ Total distance to %@", niceDistance, order.deliveryAddressString];
+                    cell.drivingDistance.text = [NSString stringWithFormat:@"Total driving distance (miles): %@", niceDistance];
                 }
                 
             }];
@@ -238,7 +245,7 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 102;
+    return 134;
 }
 
 - (IBAction)refreshLiveOrders:(id)sender {

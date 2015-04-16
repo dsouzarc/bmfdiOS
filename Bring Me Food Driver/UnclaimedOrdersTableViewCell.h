@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @interface UnclaimedOrdersTableViewCell : UITableViewCell
+
 @property (strong, nonatomic) IBOutlet UILabel *restaurantName;
+
 @property (strong, nonatomic) IBOutlet UILabel *deliveryCost;
 
 @property (strong, nonatomic) IBOutlet UILabel *orderedForTime;
 
 @property (strong, nonatomic) IBOutlet UILabel *drivingDistance;
 
+@property (strong, nonatomic) IBOutlet UILabel *deliveryAddress;
 
 @end
