@@ -89,6 +89,10 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     NSString *time = [dateFormatter stringFromDate:date];
     
     //If it is today, just say
+    
+    if(!date) {
+        date = [NSDate date];
+    }
     BOOL isToday = [[NSCalendar currentCalendar] isDateInToday:date];
     
     

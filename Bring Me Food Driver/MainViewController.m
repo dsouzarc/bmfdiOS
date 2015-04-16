@@ -2,7 +2,7 @@
 //  MainViewController.m
 //  Bring Me Food Driver
 //
-//  Created by Ryan D'souza on 3/26/15.
+//  Created by Ryan D'souza on 4/15/15.
 //  Copyright (c) 2015 Ryan D'souza. All rights reserved.
 //
 
@@ -12,10 +12,10 @@
 
 @interface MainViewController ()
 
-@property (strong, nonatomic) MyClaimedOrdersViewController *myClaimedOrdersViewController;
-@property (strong, nonatomic) LiveOrdersViewController *liveOrdersViewController;
-
 @property (strong, nonatomic) UITabBarController *tabBarController;
+
+@property (strong, nonatomic) MyClaimedOrdersViewController *claimedOrdersViewController;
+@property (strong, nonatomic) LiveOrdersViewController *liveOrdersViewController;
 
 @end
 
@@ -26,32 +26,48 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     if(self) {
-        self.myClaimedOrdersViewController = [[MyClaimedOrdersViewController alloc] initWithNibName:@"MyClaimedOrdersViewController" bundle:[NSBundle mainBundle]];
-        self.myClaimedOrdersViewController.tabBarItem.title = @"My Claimed Orders";
-        
-        self.liveOrdersViewController = [[LiveOrdersViewController alloc] initWithNibName:@"LiveOrdersViewController" bundle:[NSBundle mainBundle]];
-        self.liveOrdersViewController.tabBarItem.title = @"Live Orders";
-        
-        self.tabBarController = [[UITabBarController alloc] init];
-        
-        self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.myClaimedOrdersViewController, self.liveOrdersViewController, nil];
-        [self.view addSubview:self.tabBarController.view];
 
+        NSLog(@"fine");
     }
     
     return self;
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.claimedOrdersViewController = [[MyClaimedOrdersViewController alloc] initWithNibName:@"MyClaimedOrdersViewController" bundle:[NSBundle mainBundle]];
+    self.claimedOrdersViewController.tabBarItem.title = @"My Claimed Orders";
     
-    [[UIApplication sharedApplication] setStatusBarHidden:YES
-                                            withAnimation:UIStatusBarAnimationFade];
+    self.liveOrdersViewController = [[LiveOrdersViewController alloc] initWithNibName:@"LiveOrdersViewController" bundle:[NSBundle mainBundle]];
+    self.liveOrdersViewController.tabBarItem.title = @"Live Orders";
+    
+    self.tabBarController = [[UITabBarController alloc] init];
+    NSArray *tabs = [NSArray arrayWithObjects:self.claimedOrdersViewController, self.liveOrdersViewController, nil];
+    self.tabBarController.viewControllers = tabs;
+
 }
 
-- (BOOL) prefersStatusBarHidden
+- (void) viewDidAppear:(BOOL)animated
 {
-    return YES;
+    [self setModalPresentationStyle:UIModalPresentationPopover];
+    [self presentViewController:self.tabBarController animated:YES completion:nil];
+    //self.view.window.rootViewController = self.tabBarController;
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

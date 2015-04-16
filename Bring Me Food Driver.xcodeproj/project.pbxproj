@@ -44,12 +44,12 @@
 		94B7D0331AC4A00600C313CB /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0291AC4A00600C313CB /* UICKeyChainStore.m */; };
 		94B7D0391AC4A21F00C313CB /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0371AC4A21F00C313CB /* LogInViewController.m */; };
 		94B7D03A1AC4A21F00C313CB /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7D0381AC4A21F00C313CB /* LogInViewController.xib */; };
-		94B7D03E1AC4AE2200C313CB /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D03C1AC4AE2200C313CB /* MainViewController.m */; };
-		94B7D03F1AC4AE2200C313CB /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7D03D1AC4AE2200C313CB /* MainViewController.xib */; };
 		94B7D0431AC4B3D900C313CB /* LiveOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0411AC4B3D900C313CB /* LiveOrdersViewController.m */; };
 		94B7D0441AC4B3D900C313CB /* LiveOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7D0421AC4B3D900C313CB /* LiveOrdersViewController.xib */; };
 		94B7D0481AC4B3ED00C313CB /* MyClaimedOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0461AC4B3ED00C313CB /* MyClaimedOrdersViewController.m */; };
 		94B7D0491AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */; };
+		94D4F3D01ADF241700E13F0D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4F3CE1ADF241700E13F0D /* MainViewController.m */; };
+		94D4F3D11ADF241700E13F0D /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D4F3CF1ADF241700E13F0D /* MainViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,15 +123,15 @@
 		94B7D0361AC4A21F00C313CB /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		94B7D0371AC4A21F00C313CB /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		94B7D0381AC4A21F00C313CB /* LogInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogInViewController.xib; sourceTree = "<group>"; };
-		94B7D03B1AC4AE2200C313CB /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		94B7D03C1AC4AE2200C313CB /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		94B7D03D1AC4AE2200C313CB /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		94B7D0401AC4B3D900C313CB /* LiveOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveOrdersViewController.h; sourceTree = "<group>"; };
 		94B7D0411AC4B3D900C313CB /* LiveOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveOrdersViewController.m; sourceTree = "<group>"; };
 		94B7D0421AC4B3D900C313CB /* LiveOrdersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveOrdersViewController.xib; sourceTree = "<group>"; };
 		94B7D0451AC4B3ED00C313CB /* MyClaimedOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClaimedOrdersViewController.h; sourceTree = "<group>"; };
 		94B7D0461AC4B3ED00C313CB /* MyClaimedOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClaimedOrdersViewController.m; sourceTree = "<group>"; };
 		94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyClaimedOrdersViewController.xib; sourceTree = "<group>"; };
+		94D4F3CD1ADF241700E13F0D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		94D4F3CE1ADF241700E13F0D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		94D4F3CF1ADF241700E13F0D /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,13 +200,16 @@
 				947BA3761AC9E79F0005D763 /* TableViewCells */,
 				94B7D0451AC4B3ED00C313CB /* MyClaimedOrdersViewController.h */,
 				94B7D0461AC4B3ED00C313CB /* MyClaimedOrdersViewController.m */,
+				94D4F3CD1ADF241700E13F0D /* MainViewController.h */,
+				94D4F3CE1ADF241700E13F0D /* MainViewController.m */,
+				94D4F3CF1ADF241700E13F0D /* MainViewController.xib */,
 				94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */,
+				947BA3771ACB4AEE0005D763 /* ClaimOrderViewController.h */,
+				947BA3781ACB4AEE0005D763 /* ClaimOrderViewController.m */,
+				947BA3791ACB4AEE0005D763 /* ClaimOrderViewController.xib */,
 				94B7D0401AC4B3D900C313CB /* LiveOrdersViewController.h */,
 				94B7D0411AC4B3D900C313CB /* LiveOrdersViewController.m */,
 				94B7D0421AC4B3D900C313CB /* LiveOrdersViewController.xib */,
-				94B7D03B1AC4AE2200C313CB /* MainViewController.h */,
-				94B7D03C1AC4AE2200C313CB /* MainViewController.m */,
-				94B7D03D1AC4AE2200C313CB /* MainViewController.xib */,
 				94B7D0361AC4A21F00C313CB /* LogInViewController.h */,
 				94B7D0371AC4A21F00C313CB /* LogInViewController.m */,
 				94B7D0381AC4A21F00C313CB /* LogInViewController.xib */,
@@ -221,9 +224,6 @@
 				94B7CFCF1AC49E8300C313CB /* Supporting Files */,
 				941197541AC9A7700002FDEE /* Order.h */,
 				941197551AC9A7700002FDEE /* Order.m */,
-				947BA3771ACB4AEE0005D763 /* ClaimOrderViewController.h */,
-				947BA3781ACB4AEE0005D763 /* ClaimOrderViewController.m */,
-				947BA3791ACB4AEE0005D763 /* ClaimOrderViewController.xib */,
 			);
 			path = "Bring Me Food Driver";
 			sourceTree = "<group>";
@@ -421,8 +421,8 @@
 				94B7D0441AC4B3D900C313CB /* LiveOrdersViewController.xib in Resources */,
 				941197531AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.xib in Resources */,
 				94B7D0491AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib in Resources */,
+				94D4F3D11ADF241700E13F0D /* MainViewController.xib in Resources */,
 				94B7CFDB1AC49E8300C313CB /* Main.storyboard in Resources */,
-				94B7D03F1AC4AE2200C313CB /* MainViewController.xib in Resources */,
 				947BA37B1ACB4AEE0005D763 /* ClaimOrderViewController.xib in Resources */,
 				94B7CFE01AC49E8300C313CB /* LaunchScreen.xib in Resources */,
 				94B7CFDD1AC49E8300C313CB /* Images.xcassets in Resources */,
@@ -446,6 +446,7 @@
 				94B7D0391AC4A21F00C313CB /* LogInViewController.m in Sources */,
 				94B7D02C1AC4A00600C313CB /* UIColor+Chameleon.m in Sources */,
 				94B7D0311AC4A00600C313CB /* PQFCirclesInTriangle.m in Sources */,
+				94D4F3D01ADF241700E13F0D /* MainViewController.m in Sources */,
 				94B7D0431AC4B3D900C313CB /* LiveOrdersViewController.m in Sources */,
 				94B7D02D1AC4A00600C313CB /* UIColor+CIELAB.m in Sources */,
 				941197521AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m in Sources */,
@@ -461,7 +462,6 @@
 				94B7D0301AC4A00600C313CB /* PQFBouncingBalls.m in Sources */,
 				941197561AC9A7700002FDEE /* Order.m in Sources */,
 				94B7CFD21AC49E8300C313CB /* main.m in Sources */,
-				94B7D03E1AC4AE2200C313CB /* MainViewController.m in Sources */,
 				94B7D02B1AC4A00600C313CB /* NSArray+Chameleon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
