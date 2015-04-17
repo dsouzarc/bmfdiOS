@@ -46,4 +46,40 @@
     return chosenItems;
 }
 
+- (NSString*) getOrderStatusAsString
+{
+    switch(self.orderStatus) {
+        case 0:
+            return @"Unclaimed";
+        case 1:
+            return @"Claimed";
+        case 2:
+            return @"Order Placed";
+        case 3:
+            return @"Order En Route";
+        case 4:
+            return @"Order Delivered";
+        default:
+            return @"Error";
+    }
+}
+
+- (UIColor*) getOrderStatusColor
+{
+    switch(self.orderStatus) {
+        case 0:
+            return [UIColor redColor];
+        case 1:
+            return [UIColor blueColor];
+        case 2:
+            return [UIColor orangeColor];
+        case 3:
+            return [UIColor greenColor];
+        case 4:
+            return [UIColor blackColor];
+        default:
+            return [UIColor redColor];
+    }
+}
+
 @end

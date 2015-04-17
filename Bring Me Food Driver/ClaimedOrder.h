@@ -15,6 +15,9 @@
 
 - (instancetype) initWithEverything:(NSDictionary*)dictionary;
 
+- (NSString*) getOrderStatusAsString;
+- (UIColor*) getOrderStatusColor;
+
 @property (strong, nonatomic) NSString *orderID;
 
 @property (strong, nonatomic) PFGeoPoint *deliveryAddress;
@@ -33,6 +36,6 @@
 @property (strong, nonatomic) NSString *ordererPhoneNumber;
 
 @property (strong, nonatomic) PFGeoPoint *restaurantLocation;
-@property (strong, nonatomic) PFGeoPoint *restaurantName;
+@property (strong, nonatomic) NSString *restaurantName;
 
 @end

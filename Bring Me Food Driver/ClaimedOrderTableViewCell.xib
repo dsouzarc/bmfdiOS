@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClaimedOrderTableViewCell" rowHeight="133" id="KGk-i7-Jjw" customClass="ClaimedOrderTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="133"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFO-5U-MdY">
+                        <rect key="frame" x="8" y="8" width="304" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szK-2J-Re4">
+                        <rect key="frame" x="8" y="66" width="304" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xE8-kH-gRl">
+                        <rect key="frame" x="8" y="95" width="304" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time To Be Delivered At" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoI-mp-G87">
+                        <rect key="frame" x="8" y="37" width="304" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="zoI-mp-G87" firstAttribute="top" secondItem="vFO-5U-MdY" secondAttribute="bottom" constant="8" id="6Sd-Bx-2h0"/>
+                    <constraint firstItem="zoI-mp-G87" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="78J-NR-ipr"/>
+                    <constraint firstItem="vFO-5U-MdY" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="AMn-BO-bDQ"/>
+                    <constraint firstItem="szK-2J-Re4" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="D4K-kd-ZII"/>
+                    <constraint firstItem="vFO-5U-MdY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="GfE-Xk-p0d"/>
+                    <constraint firstItem="zoI-mp-G87" firstAttribute="top" secondItem="vFO-5U-MdY" secondAttribute="bottom" constant="8" id="IuN-m4-71y"/>
+                    <constraint firstItem="xE8-kH-gRl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="M91-FI-Btd"/>
+                    <constraint firstItem="szK-2J-Re4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Zee-9F-65N"/>
+                    <constraint firstItem="xE8-kH-gRl" firstAttribute="top" secondItem="szK-2J-Re4" secondAttribute="bottom" constant="8" id="dmC-h7-Oh0"/>
+                    <constraint firstItem="vFO-5U-MdY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="o8b-ZM-JU2"/>
+                    <constraint firstItem="szK-2J-Re4" firstAttribute="top" secondItem="zoI-mp-G87" secondAttribute="bottom" constant="8" id="ppk-8g-zV3"/>
+                    <constraint firstItem="szK-2J-Re4" firstAttribute="top" secondItem="zoI-mp-G87" secondAttribute="bottom" constant="8" id="r1K-Of-C0H"/>
+                    <constraint firstItem="xE8-kH-gRl" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="w8W-ac-MVB"/>
+                    <constraint firstItem="xE8-kH-gRl" firstAttribute="top" secondItem="szK-2J-Re4" secondAttribute="bottom" constant="8" id="x5g-IS-UJi"/>
+                    <constraint firstItem="zoI-mp-G87" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="xuC-ni-FTp"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="xE8-kH-gRl" secondAttribute="bottom" constant="8" id="z6Q-Mk-GgD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="deliveryAddress" destination="xE8-kH-gRl" id="d1x-eo-cEJ"/>
+                <outlet property="orderStatus" destination="vFO-5U-MdY" id="NpD-UW-ZCX"/>
+                <outlet property="restaurantName" destination="szK-2J-Re4" id="srt-cR-U3t"/>
+                <outlet property="timeToBeDeliveredAt" destination="zoI-mp-G87" id="2TP-HT-tiO"/>
+            </connections>
+            <point key="canvasLocation" x="280" y="383.5"/>
+        </tableViewCell>
+    </objects>
+</document>

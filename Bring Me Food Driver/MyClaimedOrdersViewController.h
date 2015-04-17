@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
+#import "ClaimedOrder.h"
+#import "ChosenMenuItem.h"
+#import "PQFBarsInCircle.h"
+#import "ClaimedOrderTableViewCell.h"
+
 @interface MyClaimedOrdersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 
