@@ -1,1 +1,1 @@
-The driver iOS app to the Bring Me Food App (see other repo)
+#[See this repository for a description and screenshots](https://github.com/dsouzarc/bmfiOS)
