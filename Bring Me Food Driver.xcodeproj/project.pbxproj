@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		9408CBBD1AE06A73000AC589 /* CustomIOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9408CBBC1AE06A73000AC589 /* CustomIOSAlertView.m */; };
+		9408CBC11AE08292000AC589 /* ClaimedOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9408CBC01AE08292000AC589 /* ClaimedOrder.m */; };
+		9408CBC41AE085B1000AC589 /* ChosenMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9408CBC31AE085B1000AC589 /* ChosenMenuItem.m */; };
 		941197521AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 941197501AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m */; };
 		941197531AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 941197511AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.xib */; };
-		941197561AC9A7700002FDEE /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 941197551AC9A7700002FDEE /* Order.m */; };
 		947BA37A1ACB4AEE0005D763 /* ClaimOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 947BA3781ACB4AEE0005D763 /* ClaimOrderViewController.m */; };
 		947BA37B1ACB4AEE0005D763 /* ClaimOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 947BA3791ACB4AEE0005D763 /* ClaimOrderViewController.xib */; };
 		94B7CFD21AC49E8300C313CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7CFD11AC49E8300C313CB /* main.m */; };
@@ -67,11 +68,13 @@
 /* Begin PBXFileReference section */
 		9408CBBB1AE06A73000AC589 /* CustomIOSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOSAlertView.h; sourceTree = "<group>"; };
 		9408CBBC1AE06A73000AC589 /* CustomIOSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOSAlertView.m; sourceTree = "<group>"; };
+		9408CBBF1AE08292000AC589 /* ClaimedOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimedOrder.h; sourceTree = "<group>"; };
+		9408CBC01AE08292000AC589 /* ClaimedOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimedOrder.m; sourceTree = "<group>"; };
+		9408CBC21AE085B1000AC589 /* ChosenMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChosenMenuItem.h; sourceTree = "<group>"; };
+		9408CBC31AE085B1000AC589 /* ChosenMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChosenMenuItem.m; sourceTree = "<group>"; };
 		9411974F1AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnclaimedOrdersTableViewCell.h; sourceTree = "<group>"; };
 		941197501AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnclaimedOrdersTableViewCell.m; sourceTree = "<group>"; };
 		941197511AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnclaimedOrdersTableViewCell.xib; sourceTree = "<group>"; };
-		941197541AC9A7700002FDEE /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
-		941197551AC9A7700002FDEE /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		947BA3771ACB4AEE0005D763 /* ClaimOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimOrderViewController.h; sourceTree = "<group>"; };
 		947BA3781ACB4AEE0005D763 /* ClaimOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimOrderViewController.m; sourceTree = "<group>"; };
 		947BA3791ACB4AEE0005D763 /* ClaimOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClaimOrderViewController.xib; sourceTree = "<group>"; };
@@ -246,10 +249,12 @@
 				94B7CFDC1AC49E8300C313CB /* Images.xcassets */,
 				94B7CFDE1AC49E8300C313CB /* LaunchScreen.xib */,
 				94B7CFCF1AC49E8300C313CB /* Supporting Files */,
-				941197541AC9A7700002FDEE /* Order.h */,
-				941197551AC9A7700002FDEE /* Order.m */,
 				94D4F3D21ADF3EC000E13F0D /* UnclaimedOrder.h */,
 				94D4F3D31ADF3EC000E13F0D /* UnclaimedOrder.m */,
+				9408CBBF1AE08292000AC589 /* ClaimedOrder.h */,
+				9408CBC01AE08292000AC589 /* ClaimedOrder.m */,
+				9408CBC21AE085B1000AC589 /* ChosenMenuItem.h */,
+				9408CBC31AE085B1000AC589 /* ChosenMenuItem.m */,
 			);
 			path = "Bring Me Food Driver";
 			sourceTree = "<group>";
@@ -473,8 +478,10 @@
 				94B7D02C1AC4A00600C313CB /* UIColor+Chameleon.m in Sources */,
 				94B7D0311AC4A00600C313CB /* PQFCirclesInTriangle.m in Sources */,
 				94D4F3D01ADF241700E13F0D /* MainViewController.m in Sources */,
+				9408CBC11AE08292000AC589 /* ClaimedOrder.m in Sources */,
 				9408CBBD1AE06A73000AC589 /* CustomIOSAlertView.m in Sources */,
 				94B7D0431AC4B3D900C313CB /* LiveOrdersViewController.m in Sources */,
+				9408CBC41AE085B1000AC589 /* ChosenMenuItem.m in Sources */,
 				94B7D02D1AC4A00600C313CB /* UIColor+CIELAB.m in Sources */,
 				941197521AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m in Sources */,
 				947BA37A1ACB4AEE0005D763 /* ClaimOrderViewController.m in Sources */,
@@ -488,7 +495,6 @@
 				94B7CFD51AC49E8300C313CB /* AppDelegate.m in Sources */,
 				94B7D0321AC4A00600C313CB /* UIColor+FlatColors.m in Sources */,
 				94B7D0301AC4A00600C313CB /* PQFBouncingBalls.m in Sources */,
-				941197561AC9A7700002FDEE /* Order.m in Sources */,
 				94B7CFD21AC49E8300C313CB /* main.m in Sources */,
 				94B7D02B1AC4A00600C313CB /* NSArray+Chameleon.m in Sources */,
 			);
