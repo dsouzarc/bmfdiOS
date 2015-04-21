@@ -23,8 +23,6 @@
 		94B7CFDD1AC49E8300C313CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94B7CFDC1AC49E8300C313CB /* Images.xcassets */; };
 		94B7CFE01AC49E8300C313CB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7CFDE1AC49E8300C313CB /* LaunchScreen.xib */; };
 		94B7CFEC1AC49E8300C313CB /* Bring_Me_Food_DriverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7CFEB1AC49E8300C313CB /* Bring_Me_Food_DriverTests.m */; };
-		94B7CFF61AC49F4200C313CB /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B7CFF51AC49F4200C313CB /* Parse.framework */; };
-		94B7CFF81AC49F5F00C313CB /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B7CFF71AC49F5F00C313CB /* Bolts.framework */; };
 		94B7CFFA1AC49F8B00C313CB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B7CFF91AC49F8B00C313CB /* AudioToolbox.framework */; };
 		94B7CFFC1AC49F9000C313CB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B7CFFB1AC49F9000C313CB /* CFNetwork.framework */; };
 		94B7CFFE1AC49F9700C313CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B7CFFD1AC49F9700C313CB /* CoreGraphics.framework */; };
@@ -52,6 +50,8 @@
 		94B7D0441AC4B3D900C313CB /* LiveOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7D0421AC4B3D900C313CB /* LiveOrdersViewController.xib */; };
 		94B7D0481AC4B3ED00C313CB /* MyClaimedOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B7D0461AC4B3ED00C313CB /* MyClaimedOrdersViewController.m */; };
 		94B7D0491AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */; };
+		94D11ABC1AE70CC800D83B51 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D11ABA1AE70CC800D83B51 /* Bolts.framework */; };
+		94D11ABD1AE70CC800D83B51 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D11ABB1AE70CC800D83B51 /* Parse.framework */; };
 		94D4F3D01ADF241700E13F0D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4F3CE1ADF241700E13F0D /* MainViewController.m */; };
 		94D4F3D11ADF241700E13F0D /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D4F3CF1ADF241700E13F0D /* MainViewController.xib */; };
 		94D4F3D41ADF3EC000E13F0D /* UnclaimedOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4F3D31ADF3EC000E13F0D /* UnclaimedOrder.m */; };
@@ -96,8 +96,6 @@
 		94B7CFE51AC49E8300C313CB /* Bring Me Food DriverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bring Me Food DriverTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B7CFEA1AC49E8300C313CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94B7CFEB1AC49E8300C313CB /* Bring_Me_Food_DriverTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bring_Me_Food_DriverTests.m; sourceTree = "<group>"; };
-		94B7CFF51AC49F4200C313CB /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		94B7CFF71AC49F5F00C313CB /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		94B7CFF91AC49F8B00C313CB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		94B7CFFB1AC49F9000C313CB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		94B7CFFD1AC49F9700C313CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -141,6 +139,8 @@
 		94B7D0451AC4B3ED00C313CB /* MyClaimedOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyClaimedOrdersViewController.h; sourceTree = "<group>"; };
 		94B7D0461AC4B3ED00C313CB /* MyClaimedOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyClaimedOrdersViewController.m; sourceTree = "<group>"; };
 		94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyClaimedOrdersViewController.xib; sourceTree = "<group>"; };
+		94D11ABA1AE70CC800D83B51 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		94D11ABB1AE70CC800D83B51 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		94D4F3CD1ADF241700E13F0D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		94D4F3CE1ADF241700E13F0D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		94D4F3CF1ADF241700E13F0D /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
@@ -156,16 +156,16 @@
 				94B7D00E1AC49FD300C313CB /* libsqlite3.dylib in Frameworks */,
 				94B7D00C1AC49FCC00C313CB /* libz.dylib in Frameworks */,
 				94B7D00A1AC49FC700C313CB /* SystemConfiguration.framework in Frameworks */,
+				94D11ABC1AE70CC800D83B51 /* Bolts.framework in Frameworks */,
 				94B7D0081AC49FBA00C313CB /* StoreKit.framework in Frameworks */,
 				94B7D0061AC49FB400C313CB /* Security.framework in Frameworks */,
+				94D11ABD1AE70CC800D83B51 /* Parse.framework in Frameworks */,
 				94B7D0041AC49FAB00C313CB /* QuartzCore.framework in Frameworks */,
 				94B7D0021AC49FA600C313CB /* MobileCoreServices.framework in Frameworks */,
 				94B7D0001AC49F9D00C313CB /* CoreLocation.framework in Frameworks */,
 				94B7CFFE1AC49F9700C313CB /* CoreGraphics.framework in Frameworks */,
 				94B7CFFC1AC49F9000C313CB /* CFNetwork.framework in Frameworks */,
 				94B7CFFA1AC49F8B00C313CB /* AudioToolbox.framework in Frameworks */,
-				94B7CFF61AC49F4200C313CB /* Parse.framework in Frameworks */,
-				94B7CFF81AC49F5F00C313CB /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +347,8 @@
 		94B7D0341AC4A02200C313CB /* Parse and Default Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				94D11ABA1AE70CC800D83B51 /* Bolts.framework */,
+				94D11ABB1AE70CC800D83B51 /* Parse.framework */,
 				94B7D00D1AC49FD300C313CB /* libsqlite3.dylib */,
 				94B7D00B1AC49FCC00C313CB /* libz.dylib */,
 				94B7D0091AC49FC700C313CB /* SystemConfiguration.framework */,
@@ -358,8 +360,6 @@
 				94B7CFFD1AC49F9700C313CB /* CoreGraphics.framework */,
 				94B7CFFB1AC49F9000C313CB /* CFNetwork.framework */,
 				94B7CFF91AC49F8B00C313CB /* AudioToolbox.framework */,
-				94B7CFF71AC49F5F00C313CB /* Bolts.framework */,
-				94B7CFF51AC49F4200C313CB /* Parse.framework */,
 			);
 			name = "Parse and Default Libraries";
 			sourceTree = "<group>";
