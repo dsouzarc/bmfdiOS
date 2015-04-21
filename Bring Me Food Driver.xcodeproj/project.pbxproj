@@ -52,6 +52,10 @@
 		94B7D0491AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */; };
 		94D11ABC1AE70CC800D83B51 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D11ABA1AE70CC800D83B51 /* Bolts.framework */; };
 		94D11ABD1AE70CC800D83B51 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D11ABB1AE70CC800D83B51 /* Parse.framework */; };
+		94D11AD51AE70EA900D83B51 /* ViewOrderDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D11AD31AE70EA900D83B51 /* ViewOrderDetailsViewController.m */; };
+		94D11AD61AE70EA900D83B51 /* ViewOrderDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D11AD41AE70EA900D83B51 /* ViewOrderDetailsViewController.xib */; };
+		94D11ADA1AE70F2B00D83B51 /* RestaurantItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D11AD81AE70F2B00D83B51 /* RestaurantItemTableViewCell.m */; };
+		94D11ADB1AE70F2B00D83B51 /* RestaurantItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D11AD91AE70F2B00D83B51 /* RestaurantItemTableViewCell.xib */; };
 		94D4F3D01ADF241700E13F0D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4F3CE1ADF241700E13F0D /* MainViewController.m */; };
 		94D4F3D11ADF241700E13F0D /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D4F3CF1ADF241700E13F0D /* MainViewController.xib */; };
 		94D4F3D41ADF3EC000E13F0D /* UnclaimedOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4F3D31ADF3EC000E13F0D /* UnclaimedOrder.m */; };
@@ -141,6 +145,12 @@
 		94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyClaimedOrdersViewController.xib; sourceTree = "<group>"; };
 		94D11ABA1AE70CC800D83B51 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		94D11ABB1AE70CC800D83B51 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		94D11AD21AE70EA900D83B51 /* ViewOrderDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewOrderDetailsViewController.h; sourceTree = "<group>"; };
+		94D11AD31AE70EA900D83B51 /* ViewOrderDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewOrderDetailsViewController.m; sourceTree = "<group>"; };
+		94D11AD41AE70EA900D83B51 /* ViewOrderDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewOrderDetailsViewController.xib; sourceTree = "<group>"; };
+		94D11AD71AE70F2B00D83B51 /* RestaurantItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantItemTableViewCell.h; sourceTree = "<group>"; };
+		94D11AD81AE70F2B00D83B51 /* RestaurantItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantItemTableViewCell.m; sourceTree = "<group>"; };
+		94D11AD91AE70F2B00D83B51 /* RestaurantItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RestaurantItemTableViewCell.xib; sourceTree = "<group>"; };
 		94D4F3CD1ADF241700E13F0D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		94D4F3CE1ADF241700E13F0D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		94D4F3CF1ADF241700E13F0D /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
@@ -220,6 +230,12 @@
 		94B7CFCE1AC49E8300C313CB /* Bring Me Food Driver */ = {
 			isa = PBXGroup;
 			children = (
+				94D11AD71AE70F2B00D83B51 /* RestaurantItemTableViewCell.h */,
+				94D11AD81AE70F2B00D83B51 /* RestaurantItemTableViewCell.m */,
+				94D11AD91AE70F2B00D83B51 /* RestaurantItemTableViewCell.xib */,
+				94D11AD21AE70EA900D83B51 /* ViewOrderDetailsViewController.h */,
+				94D11AD31AE70EA900D83B51 /* ViewOrderDetailsViewController.m */,
+				94D11AD41AE70EA900D83B51 /* ViewOrderDetailsViewController.xib */,
 				947BA3761AC9E79F0005D763 /* TableViewCells */,
 				94D11ACE1AE70DE300D83B51 /* Claimed orders */,
 				94D11AD11AE70E0D00D83B51 /* Main View Controller */,
@@ -517,12 +533,14 @@
 				94B7D03A1AC4A21F00C313CB /* LogInViewController.xib in Resources */,
 				94B7D0441AC4B3D900C313CB /* LiveOrdersViewController.xib in Resources */,
 				941197531AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.xib in Resources */,
+				94D11AD61AE70EA900D83B51 /* ViewOrderDetailsViewController.xib in Resources */,
 				94B7D0491AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib in Resources */,
 				94D4F3D11ADF241700E13F0D /* MainViewController.xib in Resources */,
 				94B7CFDB1AC49E8300C313CB /* Main.storyboard in Resources */,
 				947BA37B1ACB4AEE0005D763 /* ClaimOrderViewController.xib in Resources */,
 				94B7CFE01AC49E8300C313CB /* LaunchScreen.xib in Resources */,
 				94B7CFDD1AC49E8300C313CB /* Images.xcassets in Resources */,
+				94D11ADB1AE70F2B00D83B51 /* RestaurantItemTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,6 +565,7 @@
 				9408CBC81AE08A35000AC589 /* ClaimedOrderTableViewCell.m in Sources */,
 				9408CBC11AE08292000AC589 /* ClaimedOrder.m in Sources */,
 				9408CBBD1AE06A73000AC589 /* CustomIOSAlertView.m in Sources */,
+				94D11ADA1AE70F2B00D83B51 /* RestaurantItemTableViewCell.m in Sources */,
 				94B7D0431AC4B3D900C313CB /* LiveOrdersViewController.m in Sources */,
 				9408CBC41AE085B1000AC589 /* ChosenMenuItem.m in Sources */,
 				94B7D02D1AC4A00600C313CB /* UIColor+CIELAB.m in Sources */,
@@ -564,6 +583,7 @@
 				94B7D0301AC4A00600C313CB /* PQFBouncingBalls.m in Sources */,
 				94B7CFD21AC49E8300C313CB /* main.m in Sources */,
 				94B7D02B1AC4A00600C313CB /* NSArray+Chameleon.m in Sources */,
+				94D11AD51AE70EA900D83B51 /* ViewOrderDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

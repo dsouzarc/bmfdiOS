@@ -11,7 +11,7 @@
 @interface MyClaimedOrdersViewController ()
 
 @property (strong, nonatomic) IBOutlet UITableView *claimedOrdersTableView;
-
+@property (strong, nonatomic) ViewOrderDetailsViewController *orderDetails;
 @property (strong, nonatomic) UILabel *noClaimedOrders;
 
 @property (strong, nonatomic) NSArray *claimedOrders;
@@ -96,6 +96,14 @@
 /****************************/
 
 static NSString *cellIdentifier = @"ClaimedOrderTableViewCell";
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.orderDetails = [[ViewOrderDetailsViewController alloc] initWithNibName:@"ViewOrderDetailsViewController" bundle:[NSBundle mainBundle] order:self.claimedOrders[indexPath.row]];
+    
+    [self setModalPresentationStyle:UIModalPresentationFormSheet];
+    [self presentViewController:self.orderDetails animated:YES completion:nil];
+}
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

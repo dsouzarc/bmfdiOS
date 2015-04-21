@@ -13,6 +13,7 @@
 #import "ChosenMenuItem.h"
 #import "PQFBarsInCircle.h"
 #import "ClaimedOrderTableViewCell.h"
+#import "ViewOrderDetailsViewController.h"
 
 @interface MyClaimedOrdersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
