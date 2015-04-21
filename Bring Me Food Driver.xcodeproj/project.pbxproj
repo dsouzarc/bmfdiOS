@@ -185,31 +185,15 @@
 				9408CBBB1AE06A73000AC589 /* CustomIOSAlertView.h */,
 				9408CBBC1AE06A73000AC589 /* CustomIOSAlertView.m */,
 			);
-			path = CustomIOSAlertView;
-			sourceTree = "<group>";
-		};
-		9408CBBE1AE080E5000AC589 /* Live and Order Claim */ = {
-			isa = PBXGroup;
-			children = (
-				947BA3771ACB4AEE0005D763 /* ClaimOrderViewController.h */,
-				947BA3781ACB4AEE0005D763 /* ClaimOrderViewController.m */,
-				947BA3791ACB4AEE0005D763 /* ClaimOrderViewController.xib */,
-				94B7D0401AC4B3D900C313CB /* LiveOrdersViewController.h */,
-				94B7D0411AC4B3D900C313CB /* LiveOrdersViewController.m */,
-				94B7D0421AC4B3D900C313CB /* LiveOrdersViewController.xib */,
-			);
-			name = "Live and Order Claim";
+			name = CustomIOSAlertView;
+			path = "Bring Me Food Driver/CustomIOSAlertView";
 			sourceTree = "<group>";
 		};
 		947BA3761AC9E79F0005D763 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				9411974F1AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.h */,
-				941197501AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m */,
-				941197511AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.xib */,
-				9408CBC51AE08A35000AC589 /* ClaimedOrderTableViewCell.h */,
-				9408CBC61AE08A35000AC589 /* ClaimedOrderTableViewCell.m */,
-				9408CBC71AE08A35000AC589 /* ClaimedOrderTableViewCell.xib */,
+				94D11AD01AE70DF700D83B51 /* Unclaimed */,
+				94D11ACF1AE70DF000D83B51 /* Claimed */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -237,19 +221,14 @@
 			isa = PBXGroup;
 			children = (
 				947BA3761AC9E79F0005D763 /* TableViewCells */,
-				94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */,
-				94B7D0451AC4B3ED00C313CB /* MyClaimedOrdersViewController.h */,
-				94B7D0461AC4B3ED00C313CB /* MyClaimedOrdersViewController.m */,
-				94D4F3CD1ADF241700E13F0D /* MainViewController.h */,
-				94D4F3CE1ADF241700E13F0D /* MainViewController.m */,
-				94D4F3CF1ADF241700E13F0D /* MainViewController.xib */,
-				9408CBBE1AE080E5000AC589 /* Live and Order Claim */,
-				94B7D0361AC4A21F00C313CB /* LogInViewController.h */,
-				94B7D0371AC4A21F00C313CB /* LogInViewController.m */,
-				9408CBBA1AE06A73000AC589 /* CustomIOSAlertView */,
-				94B7D0381AC4A21F00C313CB /* LogInViewController.xib */,
+				94D11ACE1AE70DE300D83B51 /* Claimed orders */,
+				94D11AD11AE70E0D00D83B51 /* Main View Controller */,
+				94D11ACB1AE70DBC00D83B51 /* Claim Order */,
+				94D11ACC1AE70DC500D83B51 /* Live Orders */,
+				94D11ACD1AE70DCF00D83B51 /* Login */,
 				94B7CFD31AC49E8300C313CB /* AppDelegate.h */,
 				94B7CFD41AC49E8300C313CB /* AppDelegate.m */,
+				94D11ACA1AE70D9200D83B51 /* Custom Objects */,
 				94B7D0351AC4A03500C313CB /* Misc 3rd Party Libraries */,
 				94B7CFD61AC49E8300C313CB /* ViewController.h */,
 				94B7CFD71AC49E8300C313CB /* ViewController.m */,
@@ -257,12 +236,6 @@
 				94B7CFDC1AC49E8300C313CB /* Images.xcassets */,
 				94B7CFDE1AC49E8300C313CB /* LaunchScreen.xib */,
 				94B7CFCF1AC49E8300C313CB /* Supporting Files */,
-				94D4F3D21ADF3EC000E13F0D /* UnclaimedOrder.h */,
-				94D4F3D31ADF3EC000E13F0D /* UnclaimedOrder.m */,
-				9408CBBF1AE08292000AC589 /* ClaimedOrder.h */,
-				9408CBC01AE08292000AC589 /* ClaimedOrder.m */,
-				9408CBC21AE085B1000AC589 /* ChosenMenuItem.h */,
-				9408CBC31AE085B1000AC589 /* ChosenMenuItem.m */,
 			);
 			path = "Bring Me Food Driver";
 			sourceTree = "<group>";
@@ -367,6 +340,7 @@
 		94B7D0351AC4A03500C313CB /* Misc 3rd Party Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				9408CBBA1AE06A73000AC589 /* CustomIOSAlertView */,
 				94B7D00F1AC4A00600C313CB /* Chameleon */,
 				94B7D01C1AC4A00600C313CB /* PQFCustomLoaders */,
 				94B7D0241AC4A00600C313CB /* UIColor+FlatColors */,
@@ -374,6 +348,89 @@
 			);
 			name = "Misc 3rd Party Libraries";
 			path = ..;
+			sourceTree = "<group>";
+		};
+		94D11ACA1AE70D9200D83B51 /* Custom Objects */ = {
+			isa = PBXGroup;
+			children = (
+				94D4F3D21ADF3EC000E13F0D /* UnclaimedOrder.h */,
+				94D4F3D31ADF3EC000E13F0D /* UnclaimedOrder.m */,
+				9408CBBF1AE08292000AC589 /* ClaimedOrder.h */,
+				9408CBC01AE08292000AC589 /* ClaimedOrder.m */,
+				9408CBC21AE085B1000AC589 /* ChosenMenuItem.h */,
+				9408CBC31AE085B1000AC589 /* ChosenMenuItem.m */,
+			);
+			name = "Custom Objects";
+			sourceTree = "<group>";
+		};
+		94D11ACB1AE70DBC00D83B51 /* Claim Order */ = {
+			isa = PBXGroup;
+			children = (
+				947BA3771ACB4AEE0005D763 /* ClaimOrderViewController.h */,
+				947BA3781ACB4AEE0005D763 /* ClaimOrderViewController.m */,
+				947BA3791ACB4AEE0005D763 /* ClaimOrderViewController.xib */,
+			);
+			name = "Claim Order";
+			sourceTree = "<group>";
+		};
+		94D11ACC1AE70DC500D83B51 /* Live Orders */ = {
+			isa = PBXGroup;
+			children = (
+				94B7D0401AC4B3D900C313CB /* LiveOrdersViewController.h */,
+				94B7D0411AC4B3D900C313CB /* LiveOrdersViewController.m */,
+				94B7D0421AC4B3D900C313CB /* LiveOrdersViewController.xib */,
+			);
+			name = "Live Orders";
+			sourceTree = "<group>";
+		};
+		94D11ACD1AE70DCF00D83B51 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				94B7D0361AC4A21F00C313CB /* LogInViewController.h */,
+				94B7D0371AC4A21F00C313CB /* LogInViewController.m */,
+				94B7D0381AC4A21F00C313CB /* LogInViewController.xib */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		94D11ACE1AE70DE300D83B51 /* Claimed orders */ = {
+			isa = PBXGroup;
+			children = (
+				94B7D0471AC4B3ED00C313CB /* MyClaimedOrdersViewController.xib */,
+				94B7D0451AC4B3ED00C313CB /* MyClaimedOrdersViewController.h */,
+				94B7D0461AC4B3ED00C313CB /* MyClaimedOrdersViewController.m */,
+			);
+			name = "Claimed orders";
+			sourceTree = "<group>";
+		};
+		94D11ACF1AE70DF000D83B51 /* Claimed */ = {
+			isa = PBXGroup;
+			children = (
+				9408CBC51AE08A35000AC589 /* ClaimedOrderTableViewCell.h */,
+				9408CBC61AE08A35000AC589 /* ClaimedOrderTableViewCell.m */,
+				9408CBC71AE08A35000AC589 /* ClaimedOrderTableViewCell.xib */,
+			);
+			name = Claimed;
+			sourceTree = "<group>";
+		};
+		94D11AD01AE70DF700D83B51 /* Unclaimed */ = {
+			isa = PBXGroup;
+			children = (
+				9411974F1AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.h */,
+				941197501AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.m */,
+				941197511AC8F3350002FDEE /* UnclaimedOrdersTableViewCell.xib */,
+			);
+			name = Unclaimed;
+			sourceTree = "<group>";
+		};
+		94D11AD11AE70E0D00D83B51 /* Main View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				94D4F3CD1ADF241700E13F0D /* MainViewController.h */,
+				94D4F3CE1ADF241700E13F0D /* MainViewController.m */,
+				94D4F3CF1ADF241700E13F0D /* MainViewController.xib */,
+			);
+			name = "Main View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
