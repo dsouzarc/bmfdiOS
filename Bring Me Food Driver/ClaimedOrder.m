@@ -48,7 +48,17 @@
 
 - (NSString*) getOrderStatusAsString
 {
-    switch(self.orderStatus) {
+    return [ClaimedOrder getOrderStatusString:self.orderStatus];
+}
+
+- (NSString*) getNextOrderStatusAsString
+{
+    return [ClaimedOrder getOrderStatusString:(self.orderStatus + 1)];
+}
+
++ (NSString*) getOrderStatusString:(NSInteger)orderStatus
+{
+    switch(orderStatus) {
         case 0:
             return @"Unclaimed";
         case 1:

@@ -10,26 +10,27 @@
 
 @interface ViewOrderDetailsViewController ()
 
-@property (strong, nonatomic) IBOutlet UILabel *orderStatus;
-@property (strong, nonatomic) IBOutlet UILabel *estimatedDeliveryTime;
-@property (strong, nonatomic) IBOutlet UILabel *myDeliveryTime;
-@property (strong, nonatomic) IBOutlet UIButton *driverLocationOnMapButton;
-@property (strong, nonatomic) IBOutlet UILabel *myPhoneNumber;
-@property (strong, nonatomic) IBOutlet UILabel *driverNamed;
-@property (strong, nonatomic) IBOutlet UIButton *driverPhone;
-@property (strong, nonatomic) IBOutlet UILabel *deliveryAddress;
-@property (strong, nonatomic) IBOutlet UILabel *restaurantName;
-@property (strong, nonatomic) IBOutlet UITableView *myItemsTableView;
-@property (strong, nonatomic) IBOutlet UILabel *orderCost;
+@property (strong, nonatomic) IBOutlet UILabel *currentOrderStatus;
+@property (strong, nonatomic) IBOutlet UIButton *updateOrderStatusButton;
+@property (strong, nonatomic) IBOutlet UILabel *customerName;
+@property (strong, nonatomic) IBOutlet UIButton *customerAddressButton;
 @property (strong, nonatomic) IBOutlet UITextView *additionalDetails;
+@property (strong, nonatomic) IBOutlet UIButton *customerPhoneButton;
+@property (strong, nonatomic) IBOutlet UILabel *customerDeliveryTime;
+@property (strong, nonatomic) IBOutlet UILabel *estimatedDeliveryTime;
+@property (strong, nonatomic) IBOutlet UIButton *restaurantButton;
+@property (strong, nonatomic) IBOutlet UILabel *orderCost;
+@property (strong, nonatomic) IBOutlet UITableView *orderItemsTableView;
+
 
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *allUILabels;
-
 @property (nonatomic, strong) ClaimedOrder *order;
 
-- (IBAction)callDriver:(id)sender;
-- (IBAction)showDriverLocationOnMap:(id)sender;
-- (IBAction)goBack:(id)sender;
+
+- (IBAction)updateOrder:(id)sender;
+- (IBAction)showCustomerAddress:(id)sender;
+- (IBAction)callCustomer:(id)sender;
+- (IBAction)showRestaurant:(id)sender;
 
 @end
 
@@ -51,34 +52,41 @@ static NSString *orderItemIdentifier = @"menuItemCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.myItemsTableView registerNib:[UINib nibWithNibName:@"RestaurantItemTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:orderItemIdentifier];
-    self.myItemsTableView.allowsSelection = NO;
+    [self.orderItemsTableView registerNib:[UINib nibWithNibName:@"RestaurantItemTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:orderItemIdentifier];
+    self.orderItemsTableView.allowsSelection = NO;
     
-    self.orderStatus.text = [NSString stringWithFormat:@"Status: %@", self.order.getOrderStatusAsString];
-    self.orderStatus.textColor = self.order.getOrderStatusColor;
+    self.currentOrderStatus.text = [NSString stringWithFormat:@"Status: %@", self.order.getOrderStatusAsString];
+    self.currentOrderStatus.adjustsFontSizeToFitWidth = YES;
+    self.currentOrderStatus.textColor = self.order.getOrderStatusColor;
     
-    self.myDeliveryTime.text = [NSString stringWithFormat:@"Time To Be Delivered At: %@", [self getNiceDate:self.order.timeToBeDeliveredAt]];
-    self.myDeliveryTime.adjustsFontSizeToFitWidth = YES;
-    self.myPhoneNumber.text = [NSString stringWithFormat:@"My Phone #: %@", self.order.ordererPhoneNumber];
-    self.deliveryAddress.text = [NSString stringWithFormat:@"Delivery Address: %@", self.order.deliveryAddressString];
-    self.restaurantName.text = [NSString stringWithFormat:@"Restaurant Name: %@", self.order.restaurantName];
-    self.orderCost.text = [NSString stringWithFormat:@"Order Cost: %@", self.order.orderCost];
-    self.additionalDetails.text = [NSString stringWithFormat:@"Additional Details: %@", self.order.additionalDetails];
-    
-    //UNCLAIMED
-    if(self.order.orderStatus == 0) {
-        self.estimatedDeliveryTime.text = @"Estimated Delivery Time: N/A";
-        self.driverNamed.text = @"Driver Name: N/A";
-        self.driverPhone.enabled = NO;
-        self.driverLocationOnMapButton.enabled = NO;
+    if(self.order.orderStatus == 4) {
+        [self.updateOrderStatusButton setTitle:@"Cannot update status any further" forState:UIControlStateNormal];
+        self.updateOrderStatusButton.enabled = NO;
     }
     else {
-        self.estimatedDeliveryTime.text = [NSString stringWithFormat:@"Estimated Delivery Time: %@", [self getNiceDate:self.order.estimatedDeliveryTime]];
-        self.estimatedDeliveryTime.adjustsFontSizeToFitWidth = YES;
-        
-        self.driverNamed.text = [NSString stringWithFormat:@"Driver Name: %@", self.order.deliveryAddressString];
-        [self.driverPhone setTitle:[NSString stringWithFormat:@"Call Driver: %@", self.order.deliveryAddressString] forState:UIControlStateNormal];
+        [self.updateOrderStatusButton setTitle:[NSString stringWithFormat:@"Update Order Status To: %@", self.order.getNextOrderStatusAsString] forState:UIControlStateNormal];
+        self.updateOrderStatusButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     }
+    
+    self.customerName.text = [NSString stringWithFormat:@"Customer name: %@", self.order.ordererName];
+    [self.customerAddressButton setTitle:self.order.deliveryAddressString forState:UIControlStateNormal];
+
+    [self.customerPhoneButton setTitle:[NSString stringWithFormat:@"Customer Phone: %@", self.order.ordererPhoneNumber] forState:UIControlStateNormal];
+    
+    self.additionalDetails.text = [NSString stringWithFormat:@"Additional Details: %@", self.order.additionalDetails];
+    
+    self.customerDeliveryTime.text = [NSString stringWithFormat:@"Time To Be Delivered At: %@", [self getNiceDate:self.order.timeToBeDeliveredAt]];
+    
+    self.estimatedDeliveryTime.text = [NSString stringWithFormat:@"Estimated Delivery Time: %@", [self getNiceDate:self.order.estimatedDeliveryTime]];
+    
+    [self.restaurantButton setTitle:[NSString stringWithFormat:@"Restaurant: %@", self.order.restaurantName] forState:UIControlStateNormal];
+
+    self.orderCost.text = [NSString stringWithFormat:@"Order Cost: %@", self.order.orderCost];
+    
+    self.updateOrderStatusButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.customerPhoneButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.customerDeliveryTime.adjustsFontSizeToFitWidth = YES;
+    self.estimatedDeliveryTime.adjustsFontSizeToFitWidth = YES;
 }
 
 - (NSString*) getNiceDate:(NSDate*)date
@@ -101,22 +109,6 @@ static NSString *orderItemIdentifier = @"menuItemCell";
     }
 }
 
-- (IBAction)callDriver:(id)sender {
-    NSURL *callPhone = [NSURL URLWithString:[NSString stringWithFormat:@"telPrompt:%@", self.order.deliveryAddressString]];
-    
-    if([[UIApplication sharedApplication] canOpenURL:callPhone]) {
-        [[UIApplication sharedApplication] openURL:callPhone];
-    }
-    else {
-        UIAlertView *errorDialog = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Sorry, but we were unable to open the phone app" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [errorDialog show];
-    }
-}
-
-- (IBAction)goBack:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 
 /****************************/
 //    TABLEVIEW DELEGATES
@@ -127,7 +119,8 @@ static NSString *orderItemIdentifier = @"menuItemCell";
     RestaurantItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:orderItemIdentifier];
     
     if(!cell) {
-        cell = [[RestaurantItemTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:orderItemIdentifier];
+        cell = [[RestaurantItemTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                  reuseIdentifier:orderItemIdentifier];
     }
     
     ChosenMenuItem *item = [self.order.chosenItems objectAtIndex:indexPath.row];
@@ -149,4 +142,41 @@ static NSString *orderItemIdentifier = @"menuItemCell";
     return 1;
 }
 
+- (IBAction)updateOrder:(id)sender {
+    
+}
+
+- (IBAction)callCustomer:(id)sender {
+    NSURL *callPhone = [NSURL URLWithString:[NSString stringWithFormat:@"telPrompt:%@", self.order.ordererPhoneNumber]];
+    
+    if([[UIApplication sharedApplication] canOpenURL:callPhone]) {
+        [[UIApplication sharedApplication] openURL:callPhone];
+    }
+    else {
+        UIAlertView *errorDialog = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Sorry, but we were unable to open the phone app" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [errorDialog show];
+    }
+}
+
+- (IBAction)showRestaurant:(id)sender {
+    [self openAddressInMaps:self.order.restaurantLocation];
+}
+
+- (IBAction)showCustomerAddress:(id)sender {
+    [self openAddressInMaps:self.order.deliveryAddress];
+}
+
+- (void) openAddressInMaps:(PFGeoPoint*)location
+{
+    NSURL *openInMaps = [NSURL URLWithString:[NSString stringWithFormat:@"http://maps.apple.com/?q=%f,%f", location.latitude, location.longitude]];
+    
+    if([[UIApplication sharedApplication] canOpenURL:openInMaps]) {
+        [[UIApplication sharedApplication] openURL:openInMaps];
+    }
+    else {
+        UIAlertView *errorDialog = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Sorry, but we were unable to open the phone app" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [errorDialog show];
+    }
+    
+}
 @end

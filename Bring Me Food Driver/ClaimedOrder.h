@@ -16,7 +16,10 @@
 - (instancetype) initWithEverything:(NSDictionary*)dictionary;
 
 - (NSString*) getOrderStatusAsString;
+- (NSString*) getNextOrderStatusAsString;
 - (UIColor*) getOrderStatusColor;
+
++ (NSString*) getOrderStatusString:(NSInteger)orderStatus;
 
 @property (strong, nonatomic) NSString *orderID;
 
