@@ -22,10 +22,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *orderCost;
 @property (strong, nonatomic) IBOutlet UITableView *orderItemsTableView;
 
-
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *allUILabels;
 @property (nonatomic, strong) ClaimedOrder *order;
 
+@property (nonatomic, strong) PQFBouncingBalls *loadingAnimation;
 
 - (IBAction)updateOrder:(id)sender;
 - (IBAction)showCustomerAddress:(id)sender;
@@ -44,6 +44,8 @@ static NSString *orderItemIdentifier = @"menuItemCell";
     
     if(self) {
         self.order = order;
+        self.loadingAnimation = [[PQFBouncingBalls alloc] initLoaderOnView:self.view];
+        self.loadingAnimation.loaderColor = [UIColor blueColor];
     }
     
     return self;
@@ -59,14 +61,7 @@ static NSString *orderItemIdentifier = @"menuItemCell";
     self.currentOrderStatus.adjustsFontSizeToFitWidth = YES;
     self.currentOrderStatus.textColor = self.order.getOrderStatusColor;
     
-    if(self.order.orderStatus == 4) {
-        [self.updateOrderStatusButton setTitle:@"Cannot update status any further" forState:UIControlStateNormal];
-        self.updateOrderStatusButton.enabled = NO;
-    }
-    else {
-        [self.updateOrderStatusButton setTitle:[NSString stringWithFormat:@"Update Order Status To: %@", self.order.getNextOrderStatusAsString] forState:UIControlStateNormal];
-        self.updateOrderStatusButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-    }
+    [self orderStatusButton];
     
     self.customerName.text = [NSString stringWithFormat:@"Customer name: %@", self.order.ordererName];
     [self.customerAddressButton setTitle:self.order.deliveryAddressString forState:UIControlStateNormal];
@@ -89,6 +84,18 @@ static NSString *orderItemIdentifier = @"menuItemCell";
     self.estimatedDeliveryTime.adjustsFontSizeToFitWidth = YES;
 }
 
+- (void) orderStatusButton
+{
+    if(self.order.orderStatus == 4) {
+        [self.updateOrderStatusButton setTitle:@"Cannot update status any further" forState:UIControlStateNormal];
+        self.updateOrderStatusButton.enabled = NO;
+    }
+    else {
+        [self.updateOrderStatusButton setTitle:[NSString stringWithFormat:@"Update Order Status To: %@", self.order.getNextOrderStatusAsString] forState:UIControlStateNormal];
+        self.updateOrderStatusButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    }
+}
+
 - (NSString*) getNiceDate:(NSDate*)date
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -109,6 +116,66 @@ static NSString *orderItemIdentifier = @"menuItemCell";
     }
 }
 
+- (IBAction)updateOrder:(id)sender {
+    [self.loadingAnimation show];
+    
+    NSDictionary *params = @{@"orderID": self.order.orderID,
+                             @"updatedStatus": [NSNumber numberWithLong:(self.order.orderStatus + 1)]};
+    
+    [PFCloud callFunctionInBackground:@"updateOrder" withParameters:params block:^(NSString *response, NSError *error) {
+        
+        [self.loadingAnimation hide];
+        
+        if(error) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Uh oh" message:@"Problem updating order status. Please try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            return;
+        }
+        
+        if([response isEqualToString:@"YES"]) {
+            self.order.orderStatus++;
+            [self orderStatusButton];
+        }
+    }];
+}
+
+- (IBAction)callCustomer:(id)sender {
+    NSURL *callPhone = [NSURL URLWithString:[NSString stringWithFormat:@"telPrompt:%@", self.order.ordererPhoneNumber]];
+    
+    if([[UIApplication sharedApplication] canOpenURL:callPhone]) {
+        [[UIApplication sharedApplication] openURL:callPhone];
+    }
+    else {
+        UIAlertView *errorDialog = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Sorry, but we were unable to open the phone app" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [errorDialog show];
+    }
+}
+
+- (IBAction)showRestaurant:(id)sender {
+    [self openAddressInMaps:self.order.restaurantLocation];
+}
+
+- (IBAction)showCustomerAddress:(id)sender {
+    [self openAddressInMaps:self.order.deliveryAddress];
+}
+
+- (void) openAddressInMaps:(PFGeoPoint*)location
+{
+    NSURL *openInMaps = [NSURL URLWithString:[NSString stringWithFormat:@"http://maps.apple.com/?q=%f,%f", location.latitude, location.longitude]];
+    
+    if([[UIApplication sharedApplication] canOpenURL:openInMaps]) {
+        [[UIApplication sharedApplication] openURL:openInMaps];
+    }
+    else {
+        UIAlertView *errorDialog = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"Sorry, but we were unable to open the Maps app"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Ok"
+                                                    otherButtonTitles:nil, nil];
+        [errorDialog show];
+    }
+    
+}
 
 /****************************/
 //    TABLEVIEW DELEGATES
@@ -142,41 +209,4 @@ static NSString *orderItemIdentifier = @"menuItemCell";
     return 1;
 }
 
-- (IBAction)updateOrder:(id)sender {
-    
-}
-
-- (IBAction)callCustomer:(id)sender {
-    NSURL *callPhone = [NSURL URLWithString:[NSString stringWithFormat:@"telPrompt:%@", self.order.ordererPhoneNumber]];
-    
-    if([[UIApplication sharedApplication] canOpenURL:callPhone]) {
-        [[UIApplication sharedApplication] openURL:callPhone];
-    }
-    else {
-        UIAlertView *errorDialog = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Sorry, but we were unable to open the phone app" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [errorDialog show];
-    }
-}
-
-- (IBAction)showRestaurant:(id)sender {
-    [self openAddressInMaps:self.order.restaurantLocation];
-}
-
-- (IBAction)showCustomerAddress:(id)sender {
-    [self openAddressInMaps:self.order.deliveryAddress];
-}
-
-- (void) openAddressInMaps:(PFGeoPoint*)location
-{
-    NSURL *openInMaps = [NSURL URLWithString:[NSString stringWithFormat:@"http://maps.apple.com/?q=%f,%f", location.latitude, location.longitude]];
-    
-    if([[UIApplication sharedApplication] canOpenURL:openInMaps]) {
-        [[UIApplication sharedApplication] openURL:openInMaps];
-    }
-    else {
-        UIAlertView *errorDialog = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Sorry, but we were unable to open the phone app" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [errorDialog show];
-    }
-    
-}
 @end

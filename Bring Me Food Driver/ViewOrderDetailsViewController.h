@@ -8,6 +8,7 @@
 
 #import "ClaimedOrder.h"
 #import "RestaurantItemTableViewCell.h"
+#import "PQFBouncingBalls.h"
 
 @interface ViewOrderDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
