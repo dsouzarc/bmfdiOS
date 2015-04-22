@@ -39,15 +39,101 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     
     if(self) {
         self.unclaimedOrdersArray = [[NSMutableArray alloc] init];
+        
         self.loadingAnimation = [[PQFBouncingBalls alloc] initLoaderOnView:self.view];
         self.loadingAnimation.loaderColor = [UIColor blueColor];
+        
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        [self.locationManager startUpdatingLocation];
+        //[self.locationManager startUpdatingLocation];
+        [self.locationManager startMonitoringSignificantLocationChanges];
     }
     return self;
 }
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    //LOCATION STUFF
+    [self.locationManager requestAlwaysAuthorization];
+    
+    switch ([CLLocationManager authorizationStatus]) {
+            
+        case kCLAuthorizationStatusAuthorizedAlways:
+            NSLog(@"Always");
+            break;
+            
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+            NSLog(@"in use");
+            break;
+            
+        case kCLAuthorizationStatusDenied:
+            [self alertViewForLocation];
+            NSLog(@"Denied");
+            break;
+            
+        case kCLAuthorizationStatusNotDetermined:
+            NSLog(@"not determined");
+            break;
+            
+        case kCLAuthorizationStatusRestricted:
+            [self alertViewForLocation];
+            break;
+            
+        default:
+            NSLog(@"None");
+            break;
+    }
+    
+    //LIVE ORDERS VALUES
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.liveOrdersTableView registerNib:[UINib nibWithNibName:@"UnclaimedOrdersTableViewCell"
+                                                         bundle:[NSBundle mainBundle]]
+                   forCellReuseIdentifier:cellIdentifier];
+    [self updateLiveOrders];
+    
+    //SWIPE TO REFRESH
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(updateLiveOrders) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl.tintColor = [UIColor colorWithRed:(254/255.0) green:(153/255.0) blue:(0/255.0) alpha:1];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Fetching Live Orders"];
+    
+    UITableViewController *tableViewController = [[UITableViewController alloc] init];
+    tableViewController.tableView = self.liveOrdersTableView;
+    tableViewController.refreshControl = self.refreshControl;
+}
+
+/****************************/
+//    LOCATION MANAGER DELEGATES
+/****************************/
+
+- (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"ERROR GETTING LOCATION: ");
+}
+
+- (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *location = [locations lastObject];
+    NSDate *eventDate = location.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    
+    if (abs(howRecent) < 15.0) {
+        self.currentLocation = [PFGeoPoint geoPointWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
+        
+        NSDictionary *params = @{@"currentLocation": self.currentLocation};
+        
+        [PFCloud callFunctionInBackground:@"updateDriverLocation"
+                           withParameters:params block:^(NSString *result, NSError *error) {
+            NSLog(@"Updated location: %@", result);
+        }];
+    }
+}
+
+/****************************/
+//    TABLEVIEW DELEGATES
+/****************************/
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -64,7 +150,7 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     cell.orderedForTime.text = [NSString stringWithFormat:@"Ordered for: %@", [self getNiceDate:order.timeToBeDeliveredAt]];
     cell.deliveryCost.text = [NSString stringWithFormat:@"Cost: %@", order.orderCost];
     cell.deliveryAddress.text = [NSString stringWithFormat:@"Delivery Address: %@", order.deliveryAddressString];
-
+    
     if(!self.currentLocation) {
         cell.drivingDistance.text = @"Calculating the total driving distance...";
     }
@@ -84,9 +170,49 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     return cell;
 }
 
-- (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"ERROR GETTING LOCATION: ");
+    return self.unclaimedOrdersArray.count;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 134;
+}
+
+- (IBAction)refreshLiveOrders:(id)sender {
+    [self updateLiveOrders];
+}
+
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    //If there is at least 1 order
+    if(self.unclaimedOrdersArray && self.unclaimedOrdersArray.count > 0) {
+        return 1;
+    }
+    
+    //Otherwise, display no orders
+    else {
+        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        messageLabel.text = @"No live orders";
+        messageLabel.textColor = [UIColor blackColor];
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = NSTextAlignmentCenter;
+        self.liveOrdersTableView.backgroundView = messageLabel;
+        self.liveOrdersTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+    return 0;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UnclaimedOrder *order = [self.unclaimedOrdersArray objectAtIndex:indexPath.row];
+    
+    self.claimOrderViewController = [[ClaimOrderViewController alloc] initWithNibName:@"ClaimOrderViewController" bundle:[NSBundle mainBundle] order:order myLocation:self.currentLocation];
+    
+    self.modalPresentationStyle = UIModalPresentationFormSheet;
+    //[self.navigationController pushViewController:self.claimOrderViewController animated:YES];
+    [self presentViewController:self.claimOrderViewController animated:YES completion:nil];
 }
 
 - (NSString*) getNiceDate:(NSDate*)date
@@ -108,65 +234,34 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
         return [NSString stringWithFormat:@"Today @ %@", time];
     }
     else {
-        [dateFormatter setDateFormat:@"dd/MM"];
+        [dateFormatter setDateFormat:@"MM/dd"];
         
         return [NSString stringWithFormat:@"%@ on %@", time, [dateFormatter stringFromDate:date]];
     }
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    //LOCATION STUFF
-    [self.locationManager requestAlwaysAuthorization];
-    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
-    if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
-        NSString *title = (status == kCLAuthorizationStatusDenied) ? @"Location services are off" : @"Background location is not enabled";
-        NSString *message = @"To use background location you must turn on 'Always' in the Location Services Settings";
-        
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-                                                            message:message
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:@"Settings", nil];
-        [alertView show];
-    }
-    else if (status == kCLAuthorizationStatusNotDetermined) {
-        [self.locationManager requestAlwaysAuthorization];
-    }
-    
-    //LIVE ORDERS VALUES
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.liveOrdersTableView registerNib:[UINib nibWithNibName:@"UnclaimedOrdersTableViewCell"
-                                                         bundle:[NSBundle mainBundle]]
-                   forCellReuseIdentifier:cellIdentifier];
-    [self updateLiveOrders];
-    
-    //SWIPE TO REFRESH
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(updateLiveOrders) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl.tintColor = [UIColor colorWithRed:(254/255.0) green:(153/255.0) blue:(0/255.0) alpha:1];
-    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Fetching Live Orders"];
-    
-    UITableViewController *tableViewController = [[UITableViewController alloc] init];
-    tableViewController.tableView = self.liveOrdersTableView;
-    tableViewController.refreshControl = self.refreshControl;
-}
-
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UnclaimedOrder *order = [self.unclaimedOrdersArray objectAtIndex:indexPath.row];
-
-    self.claimOrderViewController = [[ClaimOrderViewController alloc] initWithNibName:@"ClaimOrderViewController" bundle:[NSBundle mainBundle] order:order myLocation:self.currentLocation];
-    
-    self.modalPresentationStyle = UIModalPresentationFormSheet;
-    //[self.navigationController pushViewController:self.claimOrderViewController animated:YES];
-    [self presentViewController:self.claimOrderViewController animated:YES completion:nil];
+- (void) showAlert:(NSString*)alertTitle alertMessage:(NSString*)alertMessage buttonName:(NSString*)buttonName {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:alertTitle
+                                                        message:alertMessage
+                                                       delegate:nil
+                                              cancelButtonTitle:buttonName
+                                              otherButtonTitles:nil, nil];
+    [alertView show];
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
     [self updateLiveOrders];
+}
+
+- (void) alertViewForLocation
+{
+    UIAlertView *enableLocation = [[UIAlertView alloc] initWithTitle:@"Location services are off"
+                                                             message:@"This app needs your location in the background to autonomously update clients of their order information 20 minutes prior to delivery"
+                                                            delegate:self
+                                                   cancelButtonTitle:@"Ok"
+                                                   otherButtonTitles:@"Settings", nil];
+    [enableLocation show];
 }
 
 - (void) updateLiveOrders
@@ -218,40 +313,6 @@ static NSString *cellIdentifier = @"UnclaimedOrdersCell";
     if(self.refreshControl.refreshing) {
         [self.refreshControl endRefreshing];
     }
-}
-
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
-{
-    //If there is at least 1 order
-    if(self.unclaimedOrdersArray && self.unclaimedOrdersArray.count > 0) {
-        return 1;
-    }
-    
-    //Otherwise, display no orders
-    else {
-        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-        messageLabel.text = @"No live orders";
-        messageLabel.textColor = [UIColor blackColor];
-        messageLabel.numberOfLines = 0;
-        messageLabel.textAlignment = NSTextAlignmentCenter;
-        self.liveOrdersTableView.backgroundView = messageLabel;
-        self.liveOrdersTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    }
-    return 0;
-}
-
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.unclaimedOrdersArray.count;
-}
-
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 134;
-}
-
-- (IBAction)refreshLiveOrders:(id)sender {
-    [self updateLiveOrders];
 }
 
 @end
